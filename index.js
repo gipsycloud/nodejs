@@ -43,6 +43,10 @@ let routes = {
       res.writeHead(200, { "Content-Type": "application'", "Accept": "text/html"});
       res.end("<h1>Post Method = /contact route </h1>");
     },
+  },
+  "NA": (req, res) => {
+    res.writeHead(400, { "Content-Type": "application'", "Accept": "text/html"});
+    res.end("<h1>Not Found Method = / route </h1>");
   }
 }
 let start = (req, res) => {
@@ -52,7 +56,14 @@ let start = (req, res) => {
   // console.log(req.url + ' method', reqMethod);
   let reqMethod = req.method;
   let url_params = url.parse(req.url, true);
-  routes[reqMethod][url_params.pathname](req, res);
+  let resolveRoute = routes[reqMethod][url_params.pathname];
+  // console.log(resolveRoute);
+  if (resolveRoute != null && resolveRoute != undefined) {
+    resolveRoute(req, res);
+  } else {
+    routes["NA"](req, res);
+  }
+  
   // console.log(url_params.pathname);
   
   // res.writeHead(200, {'Content-Type': 'text/plain'});

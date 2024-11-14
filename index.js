@@ -19,24 +19,41 @@
 //     console.log(`Server listening on port ${port}`);
 // });
 
+const { writeFile } = require('fs');
 let http  = require('http');
+let url = require('url');
 let routes = {
   "GET": {
-    "/": () => console.log("Method GEt and path /"),
-    "/about": () => console.log("Method GET and path /about"),
+    "/": (req, res) => {
+      res.writeHead(200, { "Content-Type": "application'", "Accept": "text/html"});
+      res.end("<h1>Get Method = / route </h1>");
+    },
+    "/about": (req, res) => {
+      res.writeHead(200, { "Content-Type": "application'", "Accept": "text/html"});
+      res.end("<h1>Get Method = /about route </h1>");
+     },
     
   },
   "POST": {
-    "/": () => console.log("Method Post and path /"),
-    "/contact": () => console.log("Method Post and path /contact"),
+    "/": (req, res) => {
+      res.writeHead(200, { "Content-Type": "application'", "Accept": "text/html"});
+      res.end("<h1>Post Method = / route </h1>");
+    },
+    "/contact": (req, res) => {
+      res.writeHead(200, { "Content-Type": "application'", "Accept": "text/html"});
+      res.end("<h1>Post Method = /contact route </h1>");
+    },
   }
 }
 let start = (req, res) => {
   // routes[req.method]();
+  // let url = req.url;
+  // routes[reqMethod][url]();
+  // console.log(req.url + ' method', reqMethod);
   let reqMethod = req.method;
-  let url = req.url;
-  routes[reqMethod][url]();
-  console.log(req.url + ' method', reqMethod);
+  let url_params = url.parse(req.url, true);
+  routes[reqMethod][url_params.pathname](req, res);
+  // console.log(url_params.pathname);
   
   // res.writeHead(200, {'Content-Type': 'text/plain'});
   // if (req.method == 'GET') {

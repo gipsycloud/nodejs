@@ -11,12 +11,13 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // Mogodb connection
-mongoose.connect('mongodb+srv://lesson:lesson123@lesson.mudrs.mongodb.net/?retryWrites=true&w=majority&appName=lesson')
+mongoose.connect('mongodb://localhost:27017')
   .then(() => console.log('Connected! app'))
   .catch((err) => {
     console.log(err);
   });
 
+// mongodb+srv://lesson:lesson123@lesson.mudrs.mongodb.net/?retryWrites=true&w=majority&appName=lesson
 // app.get('/', (req, res) => {
 //   // res.send('Hello, World!');
 //   res.json({country: 'USA'});

@@ -4,6 +4,7 @@ const coronaRoute = require('./routes/virus');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const app = express();
+const ProgressBar = require('progress');
 const PORT = process.env.PORT || 3000;
 
 // Middleware
@@ -16,6 +17,14 @@ mongoose.connect('mongodb://localhost:27017')
   .catch((err) => {
     console.log(err);
   });
+
+const bar = new ProgressBar(':bar :rate/bps :percent :etas', { total: 10 });
+const timer = setInterval(() => {
+  bar.tick();
+  if (bar.complete) {
+    clearInterval(timer);
+  }
+}, 100);
 
 // mongodb+srv://lesson:lesson123@lesson.mudrs.mongodb.net/?retryWrites=true&w=majority&appName=lesson
 // app.get('/', (req, res) => {

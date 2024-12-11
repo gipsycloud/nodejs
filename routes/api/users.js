@@ -56,4 +56,7 @@ router.delete('/:id', (req, res) => {
   }
 });
 
+// jwt token
+
+
 module.exports = router;

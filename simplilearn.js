@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const ProgressBar = require('progress');
+// const ProgressBar = require('progress');
 const jwt = require('jsonwebtoken');
 const port = 3000; // You can change this port if needed
 
@@ -48,15 +48,7 @@ function verifyToken(req, res, next) {
   }
 };
 
-
-
-const bar = new ProgressBar(':bar :rate/bps :percent :etas', { total: 10 });
-const timer = setInterval(() => {
-  bar.tick();
-  if (bar.complete) {
-    clearInterval(timer);
-  }
-}, 100);
+var ProgressBar = require('./progressbar.js');
 
 app.listen(port, () => {
 

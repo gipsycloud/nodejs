@@ -1,5 +1,5 @@
 const express = require('express');
-const ProgressBar = require('progress');
+// const ProgressBar = require('progress');
 const port = 3000; // You can change this port if needed
 const mysql = require('mysql');
 
@@ -81,13 +81,7 @@ app.get('/deleteuser/:id', (req, res) => {
   });
 });
 
-const bar = new ProgressBar(':bar :rate/bps :percent :etas', { total: 10 });
-const timer = setInterval(() => {
-  bar.tick();
-  if (bar.complete) {
-    clearInterval(timer);
-  }
-}, 100);
+var ProgressBar = require('./progressbar.js');
 
 app.listen(port, () => {
   console.log(`Mysql Connection - ${port} ${new Date()}`);

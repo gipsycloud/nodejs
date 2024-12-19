@@ -18,7 +18,7 @@ var studentSchema = new mongoose.Schema({
     default: Date.now,
   },
 });
-const Student = mongoose.model('Student', studentSchema);
+module.exports = mongoose.model('Student', studentSchema)
 
 // const newStudent = new Student({
 //   name: 'John Doe',

@@ -1,4 +1,4 @@
-const { pool, ping } = require("./models/db.js");
+const { pool } = require("./models/db.js");
 const express = require('express');
 const port = process.env.PORT || 3000; // You can change this port if needed
 const path = require('path');
@@ -21,11 +21,12 @@ app.get('/', (req, res) => {
     `);
 });
 
-app.set('view', path.join(__dirname, '/views/'));
+app.set('views', path.join(__dirname, '/views/'));
+// Set the view engine
 app.engine('hbs', exphbs.engine({
   handlebars: allowInsecurePrototypeAccess(handlebars),
-  extname: '.hbs',
-  defaultLayout: 'MainLayout', //
+  extname: 'hbs',
+  defaultLayout: 'mainLayout', //
   layoutsDir: __dirname + '/views/layouts/',
 }));
 
@@ -68,8 +69,8 @@ const shutdown = (server) => {
   });
 };
 
-if (require.mina == module) {
-  startServer();
-}
+// if (require.main == module) {
+//   startServer();
+// }
 
 app.use('/student', studentController);

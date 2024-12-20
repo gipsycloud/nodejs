@@ -1,4 +1,4 @@
-<h3 class="btn bn-secondary" href="/student">Create New</a></h3>
+<h3><a class="btn bn-secondary" href="/student">Create New</a> student list</h3>
 <table class="table table-striped table">
   <thead>
     <tr>
@@ -14,8 +14,8 @@
       <td>{{ this.name }}</td>
       <td>{{ this.age }} </td>
       <td>
-        <a class="btn btn-primary" href="/student/{{ this.id }}">View</a>
-        <a class="btn btn-warning" href="/student/{{ this.id }}/edit">Edit</a>
+        <a class="btn btn-primary" href="/student/{{ this.id }}">Edit</a>
+        {{!-- <a class="btn btn-warning" href="/student/{{ this.id }}/edit">Edit</a> --}}
         <a class="btn btn-danger" href="/student/delete/{{ this.id }}"
           onclick="return confirm('Are you sure you want to delete this recordd')">Delete</a>
       </td>

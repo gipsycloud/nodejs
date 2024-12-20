@@ -3,7 +3,12 @@
   <input type="hidden" name="_id" value="{{ student._id }}">
   <div class="form-group">
     <label for="student">Full Name</label>
-    <input type="text" class="form-control" , name="full name" value="{{ student.name}}">
+    <input type="text" class="form-control" , name="name" value="{{ student.name}}">
+  </div>
+
+  <div class="form-studentIdgroup">
+    <label for="">email</label>
+    <input type="text" class="form-control" name="email" value="{{ student.email }}">
   </div>
 
   <div class="form-studentIdgroup">

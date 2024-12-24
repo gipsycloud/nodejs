@@ -39,10 +39,26 @@ app.listen(port, () => {
 
 ## Contributing
 
-Pull requests are welcome. For major changes, please open an issue first
-to discuss what you would like to change.
+MogoDB is licensed under the MIT
+All the modern applications require big data, fast features development, flexible development.
 
-Please make sure to update tests as appropriate.
+- Scalability
+- Performance
+- High Availability
+- Easily deploy, operate and scale the databases across the leaading cloud platforms like Microsoft, Azure, AWS and etc.  
+- Big Data
+
+MERN Stack is a javascript Stack that is used for buillding modern single-page applications and comprises of 4 technologies namely: MongoDB, Express, React and Node.js.
+
+MongoDB: is a cross-platform document-oriented database program.
+Expressjs or simply Express is a web application framework for Node.js
+React is a javascript framework for building user interfaces.
+Node.js is a open-source, cross-platform javascript library run-time environment that executes JavaScript code outside of a browser.
+
+
+MongoDB was needed to address both challenges.
+
+
 
 ## License
 

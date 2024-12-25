@@ -34,34 +34,34 @@ app.set("view engine", "hbs");
 
 var ProgressBar = require('./progressbar.js');
 
-app.listen(port, () => {
-  console.log(`Mogodb Connection - ${port} ${new Date()}`);
-}
-);
+// app.listen(port, () => {
+//   console.log(`Mogodb Connection - ${port} ${new Date()}`);
+// }
+// );
 
-// const startServer = async () => {
-//   try {
-//     await ping();
-//     console.log("Ping started");
+const startServer = async () => {
+  try {
+    // await ping();
+    // console.log("Ping started");
 
-//     const server = app.listen(port, () => {
-//       console.log(`Server listening on port ${port} at ${new Date()}`);
-//     });
+    const server = app.listen(port, () => {
+      console.log(`Server listening on port ${port} at ${new Date()}`);
+    });
 
-//     process.on("SIGINT", () => shutdown(server));
-//     process.on("SIGTERM", () => shutdown(server));
-//   } catch (err) {
-//     console.error("Error starting server:", err);
-//     process.exit(1);
-//   }
-// };
+    process.on("SIGINT", () => shutdown(server));
+    process.on("SIGTERM", () => shutdown(server));
+  } catch (err) {
+    console.error("Error starting server:", err);
+    process.exit(1);
+  }
+};
 
 
 const shutdown = (server) => {
   console.log("Received shutdown signal...");
-  pool.end((err) => {
-    console.error("Error shutting down server:", err);
-  });
+  // pool.close((err) => {
+  //   console.error("Error shutting down server:", err);
+  // });
   // console.log("Shutting down server...");
   server.close(() => {
     console.log("Server closed");
@@ -69,8 +69,8 @@ const shutdown = (server) => {
   });
 };
 
-// if (require.main == module) {
-//   startServer();
-// }
+if (require.main == module) {
+  startServer();
+}
 
 app.use('/student', studentController);

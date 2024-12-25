@@ -1,10 +1,10 @@
 {
   "name": "nodejs",
   "version": "1.0.0",
-  "main": "mogodb.js",
+  "main": "udemy/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon mogodb.js"
+    "start": "nodemon udemy/app.js"
   },
   "keywords": [],
   "author": "",

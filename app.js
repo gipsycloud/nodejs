@@ -7,6 +7,11 @@ const bodyParser = require('body-parser');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+const connectDb = require('./server/config/db');
+
+// connect to db
+connectDb();
+
 app.use(express.static('public'));
 app.use(expressLayout);
 app.set('layout', './layouts/blog/main');

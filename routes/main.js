@@ -46,6 +46,31 @@ router.get('/post/:id', async (req, res) => {
   }
 });
 
+router.post('/search', async (req, res) => {
+  try {
+    const homes = {
+      title: 'Search',
+      description: 'Welcome to my blog '
+    }
+    let searchTerm = req.body.searchTerm;
+    const searchNoSpecialCharacters = searchTerm.replace(/[^a-zA-Z0-9]/g, '');
+    const data = await Post.find({
+      $or: [
+        { title: { $regex: new RegExp(searchNoSpecialCharacters, 'i') } },
+        { body: { $regex: new RegExp(searchNoSpecialCharacters, 'i') } }
+      ]
+    });
+    res.render('partials/search', {
+      data,
+      homes
+    });
+    console.log(searchTerm);
+    // res.send(searchTerm);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
 // router.get('', async (req, res) => {
 //   const homes = {
 //     title: 'Home',

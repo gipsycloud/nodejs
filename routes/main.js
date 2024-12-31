@@ -32,6 +32,20 @@ router.get('', async (req, res) => {
   }
 });
 
+router.get('/post/:id', async (req, res) => {
+  try {
+    let slug = req.params.id;
+    const data = await Post.findById({ _id: slug });
+    const homes = {
+      title: data.title,
+      description: data.body
+    }
+    res.render('blog/post', { homes, data });
+  } catch (err) {
+    console.log(err);
+  }
+});
+
 // router.get('', async (req, res) => {
 //   const homes = {
 //     title: 'Home',

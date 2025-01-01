@@ -3,6 +3,7 @@
 
 <head>
   <title>
+    <%= homes.title %>
   </title>
   <meta name="viewport" content="" />
   <link rel="stylesheet" href="/css/style.css" />
@@ -11,12 +12,13 @@
 
 <body>
   <main>
-    <div class="container">
-      <%- include('../../partials/header.ejs') %>
-        <main class="main">
-          <%- body %>
-        </main>
-        <%- include('../../partials/footer.ejs') %>
-    </div>
+    <%- include('../../partials/search.ejs') %>
+      <div class="container">
+        <%- include('../../partials/header.ejs') %>
+          <main class="main">
+            <%- body %>
+          </main>
+          <%- include('../../partials/footer.ejs') %>
+      </div>
   </main>
 </body>

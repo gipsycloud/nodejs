@@ -5,10 +5,10 @@ const Post = require('../models/Post');
 // routes
 router.get('', async (req, res) => {
   try {
-    const homes = {
-      title: 'Home',
-      description: 'Welcome to my blog'
-    }
+    // const homes = {
+    //   title: 'Home',
+    //   description: 'Welcome to my blog'
+    // }
     let perPage = 5;
     let page = req.query.page || 1;
     const data = await Post.aggregate([{ $sort: { createdAt: -1 } }, { $skip: (perPage * page) - perPage }, { $limit: perPage }]).exec();
@@ -20,11 +20,12 @@ router.get('', async (req, res) => {
     const hasNextPage = nextPage <= Math.ceil(count / perPage);
 
     res.render('blog/index', {
-      homes,
+      // homes,
       data,
       current: page,
       nextPage: hasNextPage ? nextPage : null,
-      title: 'Home'
+      title: 'Home',
+      description: 'Welcome to my blog'
     });
 
   } catch (err) {
@@ -37,11 +38,11 @@ router.get('/post/:id', async (req, res) => {
   try {
     let slug = req.params.id;
     const data = await Post.findById({ _id: slug });
-    const homes = {
-      title: data.title,
-      description: data.body
-    }
-    res.render('blog/post', { homes, data });
+    // const homes = {
+    //   title: data.title,
+    //   description: data.body
+    // }
+    res.render('blog/post', { data, title: data.title, description: data.body });
   } catch (err) {
     console.log(err);
   }
@@ -49,10 +50,10 @@ router.get('/post/:id', async (req, res) => {
 
 router.post('/search', async (req, res) => {
   try {
-    const homes = {
-      title: 'Search',
-      description: 'Welcome to my blog '
-    }
+    // const homes = {
+    //   title: 'Search',
+    //   description: 'Welcome to my blog '
+    // }
     let searchTerm = req.body.searchTerm;
     const searchNoSpecialCharacters = searchTerm.replace(/[^a-zA-Z0-9]/g, '');
     const data = await Post.find({
@@ -63,7 +64,8 @@ router.post('/search', async (req, res) => {
     });
     res.render('blog/search', {
       data,
-      homes
+      title: 'Search',
+      description: 'Welcome to my blog'
     });
     // console.log(searchTerm);
     // res.send(searchTerm);
@@ -87,11 +89,11 @@ router.post('/search', async (req, res) => {
 // });
 
 router.get('/about', (req, res) => {
-  res.render('blog/about', { title: 'About' });
+  res.render('blog/about', { title: 'About', description: 'Welcome to my blog' });
 });
 
 router.get('/contact', (req, res) => {
-  res.render('blog/contact', { title: 'Contact' });
+  res.render('blog/contact', { title: 'Contact', description: 'Welcome to my blog' });
 });
 
 router.get('/posts', async (req, res) => {

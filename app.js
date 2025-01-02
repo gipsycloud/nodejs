@@ -21,6 +21,7 @@ app.set('layout', './layouts/blog/main');
 app.set('view engine', 'ejs');
 
 app.use('/', require('./routes/main'));
+app.use('/', require('./routes/admin'));
 
 // Middleware
 // app.use(cors());

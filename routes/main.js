@@ -23,7 +23,8 @@ router.get('', async (req, res) => {
       homes,
       data,
       current: page,
-      nextPage: hasNextPage ? nextPage : null
+      nextPage: hasNextPage ? nextPage : null,
+      title: 'Home'
     });
 
   } catch (err) {

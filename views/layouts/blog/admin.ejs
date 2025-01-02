@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>
+    <%= locals.title %>
+  </title>
+  <meta charset="utf-8" />
+  <meta name="description" content="<%= locals.description %>" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <script type="text/javascript" src="js/script.js"></script>
+</head>
+
+<body>
+  <main>
+    <div class="container">
+      <%- include('../../partials/header_admin.ejs') %>
+        <main class="main">
+          <%- body %>
+        </main>
+        <%- include('../../partials/footer.ejs') %>
+    </div>
+  </main>
+</body>

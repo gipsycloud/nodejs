@@ -1,6 +1,9 @@
 require('dotenv').config();
 const express = require('express');
 const expressLayout = require('express-ejs-layouts');
+const cookieParser = require('cookie-parser'); // save session for username and password when we login with session
+const session = require('express-session');
+const MongoStore = require('connect-mongo');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const bodyParser = require('body-parser');
@@ -20,11 +23,23 @@ app.use(expressLayout);
 app.set('layout', './layouts/blog/main');
 app.set('view engine', 'ejs');
 
+app.use(cookieParser());
+app.use(session({
+  secret: process.env.SESSION_SECRET,  // you can add your own secret here (e.g. pass, mysecret)
+  resave: false,
+  saveUninitialized: false,
+  store: MongoStore.create({ mongoUrl: process.env.MONGODB_URI }),
+  cookie: {
+    maxAge: 2678400000 // 31 days
+  },
+}))
+
+
 app.use('/', require('./routes/main'));
 app.use('/', require('./routes/admin'));
 
 // Middleware
-// app.use(cors());
+// app.use(cors());@gmail.co
 // app.use(bodyParser.json());
 
 // Mogodb connection

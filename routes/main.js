@@ -38,10 +38,6 @@ router.get('/post/:id', async (req, res) => {
   try {
     let slug = req.params.id;
     const data = await Post.findById({ _id: slug });
-    // const homes = {
-    //   title: data.title,
-    //   description: data.body
-    // }
     res.render('blog/post', { data, title: data.title, description: data.body });
   } catch (err) {
     console.log(err);
@@ -50,10 +46,6 @@ router.get('/post/:id', async (req, res) => {
 
 router.post('/search', async (req, res) => {
   try {
-    // const homes = {
-    //   title: 'Search',
-    //   description: 'Welcome to my blog '
-    // }
     let searchTerm = req.body.searchTerm;
     const searchNoSpecialCharacters = searchTerm.replace(/[^a-zA-Z0-9]/g, '');
     const data = await Post.find({
@@ -67,8 +59,6 @@ router.post('/search', async (req, res) => {
       title: 'Search',
       description: 'Welcome to my blog'
     });
-    // console.log(searchTerm);
-    // res.send(searchTerm);
   } catch (err) {
     console.log(err);
   }

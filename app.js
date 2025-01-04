@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const expressLayout = require('express-ejs-layouts');
+const methodOverride = require('method-override');
 const cookieParser = require('cookie-parser'); // save session for username and password when we login with session
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
@@ -17,6 +18,7 @@ connectDb();
 // middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(methodOverride('_method'));
 
 app.use(express.static('public'));
 app.use(expressLayout);
@@ -37,17 +39,6 @@ app.use(session({
 
 app.use('/', require('./routes/main'));
 app.use('/', require('./routes/admin'));
-
-// Middleware
-// app.use(cors());@gmail.co
-// app.use(bodyParser.json());
-
-// Mogodb connection
-// mongoose.connect('mongodb://localhost:27017')
-//   .then(() => console.log('Connected! app'))
-//   .catch((err) => {
-//     console.log(err);
-//   });
 
 var ProgressBar = require('./progressbar.js');
 

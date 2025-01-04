@@ -38,17 +38,6 @@ app.use(session({
 app.use('/', require('./routes/main'));
 app.use('/', require('./routes/admin'));
 
-// Middleware
-// app.use(cors());@gmail.co
-// app.use(bodyParser.json());
-
-// Mogodb connection
-// mongoose.connect('mongodb://localhost:27017')
-//   .then(() => console.log('Connected! app'))
-//   .catch((err) => {
-//     console.log(err);
-//   });
-
 var ProgressBar = require('./progressbar.js');
 
 // mongodb+srv://lesson:lesson123@lesson.mudrs.mongodb.net/?retryWrites=true&w=majority&appName=lesson

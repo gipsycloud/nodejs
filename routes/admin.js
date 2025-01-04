@@ -58,39 +58,99 @@ router.post('/admin', async (req, res) => {
   }
 });
 
+// dashboard
 router.get('/dashboard', authMiddleware, async (req, res) => {
   try {
     const posts = await Post.find();
-    res.render('admin/dashboard', { title: 'Dashboard', description: 'Welcome to the admin panel', posts });
+    res.render('admin/dashboard', { title: 'Dashboard', description: 'Welcome to the admin panel', posts, layout: adminLayout });
   } catch (err) {
     console.log(err);
   }
-  res.render('admin/dashboard', { title: 'Dashboard', description: 'Welcome to the admin panel' });
+});
+
+// show a post
+router.get('/admin/posts/:id', async (req, res) => {
+  try {
+    let slug = req.params.id;
+    const post = await Post.findById({ _id: slug });
+    res.render('admin/posts/show', { post, title: post.title, description: post.body });
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 // create new post
 router.get('/admin/posts/new', authMiddleware, async (req, res) => {
   try {
-    const data = await Post.find();
-    res.render('admin/posts/new', { layout: adminLayout, title: 'New Post', description: 'Create a new post', data });
+    const post = await Post.find();
+    res.render('admin/posts/new', { layout: adminLayout, title: 'New Post', description: 'Create a new post', post });
   } catch (err) {
     console.log(err);
   }
 });
 
-router.get('/admin/posts/:id/edit', authMiddleware, async (req, res) => {
+// add a new post
+router.post('/add-post', authMiddleware, async (req, res) => {
   try {
-    const post = await Post.findById(req.params.id);
-    res.render('admin/posts/show', { layout: adminLayout, title: post.title, description: post.description, post });
+    const post = new Post({
+      title: req.body.title,
+      body: req.body.body,
+      // content: req.body.content
+    });
+    await post.save();
+    res.redirect('/dashboard');
   } catch (err) {
     console.log(err);
   }
 });
+
+// edit a post
+router.get('/admin/posts/:id/edit', authMiddleware, async (req, res) => {
+  try {
+    const post = await Post.findOne({ _id: req.params.id });
+    res.render('admin/posts/edit', { post, title: post.title, description: post.body, layout: adminLayout });
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+// edit a post
+router.put('/edit-post/:id', authMiddleware, async (req, res) => {
+  try {
+    await Post.findByIdAndUpdate(req.params.id, {
+      title: req.body.title,
+      body: req.body.body,
+      // content: req.body.content
+      upatedAt: Date.now()
+    });
+    res.redirect(`/post/${req.params.id}`);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+// delete a post
+router.delete('/admin/delete-post/:id', authMiddleware, async (req, res) => {
+  try {
+    await Post.deleteOne({ _id: req.params.id });
+    res.redirect('/dashboard');
+  } catch (err) {
+    console.log(err);
+  }
+}); //
 
 // login a user
 router.get('/login', (req, res) => {
   res.render('admin/index', { title: 'Admin', description: 'Welcome to my blog' });
 });
+
+// logout a user
+router.get('/logout', (req, res) => {
+  res.clearCookie('token'); // clear the token from the browser cookies
+  res.redirect('/');
+});
+
+// create a new us
 
 // register a new user
 router.post('/register', async (req, res) => {

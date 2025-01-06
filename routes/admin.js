@@ -27,12 +27,11 @@ const authMiddleware = (req, res, next) => {
 
 router.get('/admin', async (req, res) => {
   try {
-    const locals = {
-      title: 'Admin',
-      description: 'Welcome to the admin panel'
-    }
-
-    res.render('admin/index', { locals, layout: adminLayout });
+    res.render('admin/index', {
+      title: 'Login | admin.js',
+      description: 'Welcome to my blog',
+      layout: adminLayout
+    });
   } catch (err) {
     console.log(err);
   }
@@ -149,8 +148,6 @@ router.get('/logout', (req, res) => {
   res.clearCookie('token'); // clear the token from the browser cookies
   res.redirect('/');
 });
-
-// create a new us
 
 // register a new user
 router.post('/register', async (req, res) => {

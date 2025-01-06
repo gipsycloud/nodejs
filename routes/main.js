@@ -24,6 +24,7 @@ router.get('', async (req, res) => {
       data,
       current: page,
       nextPage: hasNextPage ? nextPage : null,
+      currentRoute: '/',
       title: 'Home',
       description: 'Welcome to my blog'
     });
@@ -38,7 +39,12 @@ router.get('/post/:id', async (req, res) => {
   try {
     let slug = req.params.id;
     const data = await Post.findById({ _id: slug });
-    res.render('blog/post', { data, title: data.title, description: data.body });
+    res.render('blog/post', {
+      data,
+      currentRoute: '/post/' + slug,
+      title: data.title,
+      description: data.body
+    });
   } catch (err) {
     console.log(err);
   }
@@ -79,11 +85,19 @@ router.post('/search', async (req, res) => {
 // });
 
 router.get('/about', (req, res) => {
-  res.render('blog/about', { title: 'About', description: 'Welcome to my blog' });
+  res.render('blog/about', {
+    title: 'About',
+    description: 'Welcome to my blog',
+    currentRoute: '/about'
+  });
 });
 
 router.get('/contact', (req, res) => {
-  res.render('blog/contact', { title: 'Contact', description: 'Welcome to my blog' });
+  res.render('blog/contact', {
+    title: 'Contact',
+    description: 'Welcome to my blog',
+    currentRoute: '/contact'
+  });
 });
 
 router.get('/posts', async (req, res) => {

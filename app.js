@@ -5,10 +5,11 @@ const methodOverride = require('method-override');
 const cookieParser = require('cookie-parser'); // save session for username and password when we login with session
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
+const morgan = require('morgan');
 
-const mongoose = require('mongoose');
-const cors = require('cors');
-const bodyParser = require('body-parser');
+// const mongoose = require('mongoose');
+// const cors = require('cors');
+// const bodyParser = require('body-parser');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -24,6 +25,7 @@ const { isActiveRoute } = require('./server/helpers/routeHelpers');
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(methodOverride('_method')); // override the method of the form
+app.use(morgan('dev'));  // log the request
 
 app.use(express.static('public'));  // serve static files
 app.use(expressLayout);

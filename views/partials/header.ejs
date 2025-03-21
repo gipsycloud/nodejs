@@ -1,5 +1,5 @@
-<header class="header">
-  <a href="/" class="header_logo">Nodejs</a>
+<!-- <header class=" container">
+  <a href="/" class="header_logo">ATW</a>
   <nav class="header_nav">
     <ul>
       <li><a href="/" class="<%= isActiveRoute('/', currentRoute) %>">Home</a></li>
@@ -19,4 +19,22 @@
       </svg>
     </button>
   </div>
-</header>
+</header> -->
+
+<nav class="custom-navbar" data-spy="affix" data-offset-top="20">
+  <div class="container">
+    <a class="logo" href="#">ATW</a>
+    <nav class="header_nav">
+      <ul class="nav">
+        <li><a href="/" class="<%= isActiveRoute('/', currentRoute) %>">Home</a></li>
+        <li><a href="/about" class="<%= isActiveRoute('/about', currentRoute) %>">About</a></li>
+        <li><a href="/contact" class="<%= isActiveRoute('/contact', currentRoute) %>">Contact</a></li>
+      </ul>
+    </nav>
+    <a href="javascript:void(0)" id="nav-toggle" class="hamburger hamburger--elastic">
+      <div class="hamburger-box">
+        <div class="hamburger-inner"></div>
+      </div>
+    </a>
+  </div>
+</nav><!-- End of Page Navbar -->

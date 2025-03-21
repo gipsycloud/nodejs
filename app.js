@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser'); // save session for username and 
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const morgan = require('morgan');
+const path = require('path');
 
 // const mongoose = require('mongoose');
 // const cors = require('cors');
@@ -31,6 +32,9 @@ app.use(express.static('public'));  // serve static files
 app.use(expressLayout);
 app.set('layout', './layouts/blog/main');
 app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+app.use(express.static(path.join(__dirname, 'public')));
+
 
 app.use(cookieParser());
 app.use(session({

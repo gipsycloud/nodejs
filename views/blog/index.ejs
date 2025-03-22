@@ -6,9 +6,10 @@
 <!-- <img src="/img/portfolio.webp" alt="Hero image" class="hero-image" width="981" height="528"> -->
 
 <!-- about section -->
-<section class="section" id="about">
+<section class="section background_image" id="about">
+  <div class="overlay"></div>
   <!-- container -->
-  <div class="container text-center">
+  <div class="container text-center zindex">
     <!-- about wrapper -->
     <div class="about">
       <div class="about-img-holder">
@@ -93,24 +94,26 @@
 </section> <!-- end of section -->
 
 <section class="article">
-  <h2 calss="articles_heading">Welcome to my blog</h2>
-  <ul class="article-ul">
-    <% data.forEach(function(post) { %>
-      <li>
-        <a href="/post/<%= post._id %>">
-          <span>
-            <%= post.title %>
-          </span>
-          <span class="article-list_date">
-            <%= post.createAt.toDateString() %>
-          </span>
-        </a>
-      </li>
-      <% }); %>
-  </ul>
+  <div class="container">
+    <h2 calss="articles_heading">Welcome to my blog</h2>
+    <ul class="article-ul">
+      <% data.forEach(function(post) { %>
+        <li>
+          <a href="/post/<%= post._id %>">
+            <span>
+              <%= post.title %>
+            </span>
+            <span class="article-list_date">
+              <%= post.createAt.toDateString() %>
+            </span>
+          </a>
+        </li>
+        <% }); %>
+    </ul>
 
-  <% if (nextPage !==null ) { %>
-    <a href="/?page=<%= nextPage %>" class="pagination">View Older Posts</a>
-    <% } %>
+    <% if (nextPage !==null ) { %>
+      <a href="/?page=<%= nextPage %>" class="pagination">View Older Posts</a>
+      <% } %>
+  </div>
 
 </section>

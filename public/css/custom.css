@@ -65,10 +65,14 @@ figure,
 footer,
 header,
 hgroup,
-main,
+/* main, */
 nav,
 section {
   display: block;
+}
+
+main {
+  display: contents;
 }
 
 body {
@@ -12757,7 +12761,7 @@ pre .code {
 .custom-navbar .logo {
   font-size: calc(20px + (30 - 20) * ((100vw - 300px) / (1300 - 300)));
   text-decoration: none;
-  color: black;
+  color: #fff;
 }
 
 .custom-navbar .container {
@@ -12821,9 +12825,15 @@ pre .code {
   text-decoration: none;
 }
 
+.custom-navbar .nav .item. a {
+  color: #fff;
+  text-decoration: none;
+  background-color: transparent;
+}
+
 .custom-navbar .nav .item .link:hover,
 .custom-navbar .nav .item .link.active {
-  color: #695aa6;
+  color: #ff001f;
 }
 
 .custom-navbar.affix {
@@ -12848,6 +12858,10 @@ pre .code {
 .custom-navbar.affix .hamburger-inner::after {
   background: #6c757d;
 }
+
+/* .custom-navbar.affix-top.nav.item.link {
+  color: red
+} */
 
 @media (min-width: 768px) {
   .custom-navbar .nav .item {

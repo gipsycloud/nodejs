@@ -361,7 +361,7 @@ img {
 
 
 .article {
-  white-space: nowrap;
+  white-space: initial;
   padding: 15px 0;
   margin-top: 15px;
 }

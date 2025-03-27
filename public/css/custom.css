@@ -12424,7 +12424,7 @@ p {
 
 .pricing-wrapper .pricing-card-title {
   margin-bottom: 15px;
-  font-size: calc(18px + (35 - 18) * ((100vw - 300px) / (1300 - 300)));
+  font-size: calc(12px + (25 - 15) * ((100vw - 300px) / (1300 - 300)));
 }
 
 .pricing-wrapper .pricing-card-list p {

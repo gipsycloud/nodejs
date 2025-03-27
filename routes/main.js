@@ -1,7 +1,25 @@
 const express = require('express');
 const router = express.Router();
 const Post = require('../models/Post');
+const fs = require('fs');
+const path = require('path');
 
+// Set The Storage Engine
+router.get('/download', (req, res) => {
+  console.log(`public/upload/`);
+  const file_path = 'public/upload/ATW_ROR_PO_F.pdf';
+  if (fs.existsSync(file_path)) {
+    res.download(file_path, 'ATW_ROR_PO_F.pdf', (err) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log('File downloaded successfully');
+      }
+    });
+  } else {
+    res.status(404).send('File not found');
+  }
+});
 // routes
 router.get('', async (req, res) => {
   try {

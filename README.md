@@ -62,6 +62,9 @@ MongoDB was needed to address both challenges.
 
 https://www.youtube.com/watch?v=gv3FFnOdCIo&list=PL4cUxeGkcC9hAJ-ARcYq_z6lDZV7kT1xD&index=2
 
+https://www.youtube.com/watch?v=ldwlOzRvYOU
+https://tangerine-hummingbird-1479b6.netlify.app/#contact
+
 
 
 ## License

@@ -1,0 +1,24 @@
+<section class="section article">
+  <div class="container">
+    <h2 calss="articles_heading">Welcome to my blog</h2>
+    <ul class="article-ul">
+      <% data.forEach(function(post) { %>
+        <li>
+          <a href="/post/<%= post._id %>">
+            <span>
+              <%= post.title %>
+            </span>
+            <span class="article-list_date">
+              <%= post.createAt.toDateString() %>
+            </span>
+          </a>
+        </li>
+        <% }); %>
+    </ul>
+
+    <% if (nextPage !==null ) { %>
+      <a href="/?page=<%= nextPage %>" class="pagination">View Older Posts</a>
+      <% } %>
+  </div>
+
+</section>

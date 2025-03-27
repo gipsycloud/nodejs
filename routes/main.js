@@ -21,12 +21,8 @@ router.get('/download', (req, res) => {
   }
 });
 // routes
-router.get('', async (req, res) => {
+router.get('/portfolio', async (req, res) => {
   try {
-    // const homes = {
-    //   title: 'Home',
-    //   description: 'Welcome to my blog'
-    // }
     let perPage = 5;
     let page = req.query.page || 1;
     const data = await Post.aggregate([{ $sort: { createdAt: -1 } }, { $skip: (perPage * page) - perPage }, { $limit: perPage }]).exec();
@@ -37,13 +33,12 @@ router.get('', async (req, res) => {
     const prevPage = parseInt(page) - 1;
     const hasNextPage = nextPage <= Math.ceil(count / perPage);
 
-    res.render('blog/index', {
-      // homes,
+    res.render('blog/portfolio', {
       data,
       current: page,
       nextPage: hasNextPage ? nextPage : null,
       currentRoute: '/',
-      title: 'Home',
+      title: 'Blog',
       description: 'Welcome to my blog'
     });
 
@@ -115,6 +110,14 @@ router.get('/contact', (req, res) => {
     title: 'Contact',
     description: 'Welcome to my blog',
     currentRoute: '/contact'
+  });
+});
+
+router.get('/', (req, res) => {
+  res.render('blog/index', {
+    title: 'My Portfolio',
+    description: 'Welcome to my Protfolio',
+    currentRoute: '/'
   });
 });
 

@@ -12825,7 +12825,7 @@ pre .code {
   text-decoration: none;
 }
 
-.custom-navbar .nav .item. a {
+.custom-navbar .nav .item a {
   color: #fff;
   text-decoration: none;
   background-color: transparent;
@@ -12851,6 +12851,10 @@ pre .code {
 
 .custom-navbar.affix .nav .item .link {
   color: #6c757d;
+}
+
+.custom-navbar.affix .nav .item a {
+  color: #695aa6;
 }
 
 .custom-navbar.affix .hamburger-inner,

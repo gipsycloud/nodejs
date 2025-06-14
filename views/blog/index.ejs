@@ -84,6 +84,52 @@
   </div>
 </section><!-- end of service section -->
 
+<!-- github section -->
+<section class="section" id="service">
+  <div class="container text-center">
+    <p class="section-subtitle">What I Did ?</p>
+    <h6 class="section-title mb-6">GitHub Contributions</h6>
+    <!-- row -->
+    <div class="row">
+      <div class="col-md-12 col-lg-12">
+        <div class="service-card">
+          <div class="heatmap">
+            <%= totalContributions %>
+            <% contributionDays.forEach(day => { %>
+              <div 
+                class="day contribution-<%= 
+                  day.contributionCount === 0 ? 'none' : 
+                  day.contributionCount < 3 ? 'low' : 
+                  day.contributionCount < 5 ? 'medium' : 
+                  day.contributionCount < 10 ? 'high' : 'very-high' 
+                %>"
+                title="<%= day.date %>: <%= day.contributionCount %> contributions"
+              ></div>
+            <% }) %>
+          </div>
+
+            <!-- Activity Types -->
+             <!-- Monthly Breakdown -->
+              <p>Total Commits: <%= totalCommits.toLocaleString() %></p>
+  <div style="margin-bottom: 20px;">
+    <h3 style="color: #24292e; font-size: 16px; margin-bottom: 10px;">Monthly Breakdown</h3>
+    <div style="display: flex; gap: 10px; overflow-x: auto; padding-bottom: 10px;">
+      <% contributionDays.forEach(month => { %>
+        <div style="min-width: 80px; background: #f6f8fa; padding: 10px; border-radius: 6px; text-align: center;">
+          <div style="font-size: 12px; color: #586069;"><%= month.name %></div>
+          <div style="font-size: 16px; font-weight: bold; color: #24292e;"><%= month.count %></div>
+        </div>
+      <% }); %>
+    </div>
+  </div>
+
+
+        </div>
+      </div>
+    </div><!-- end of row -->
+  </div>
+</section><!-- end of github section -->
+
 <!-- portfolio section -->
 <section class="section" id="portfolio">
   <div class="container text-center">
@@ -264,3 +310,15 @@
     </form>end of contact form -->
   </div><!-- end of container -->
 </section><!-- end of contact section -->
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+  function getColor(count) {
+    if (count === 0) return '#ebedf0'; // No contributions
+    if (count < 5) return '#9be9a8';  // Low
+    if (count < 10) return '#40c463'; // Medium
+    if (count < 20) return '#30a14e'; // High
+    return '#216e39'; // Very high
+  }
+});
+</script>

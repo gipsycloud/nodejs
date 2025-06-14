@@ -1,8 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const Post = require('../models/Post');
 const fs = require('fs');
-const path = require('path');
+const { shortenerController } = require('../controllers/shortenerController');
+const Post = require('../models/Post');
+const { fetchContributions } = require('../helper/github').default;
+// const Shortener = require('../models/shortenerModel');
+// const path = require('path');
 
 // Set The Storage Engine
 router.get('/download', (req, res) => {
@@ -113,12 +116,58 @@ router.get('/contact', (req, res) => {
   });
 });
 
-router.get('/', (req, res) => {
-  res.render('blog/index', {
-    title: 'My Portfolio',
-    description: 'Welcome to my Protfolio',
-    currentRoute: '/'
+router.get('/shortener', (req, res) => {
+  res.render('blog/shortener', {
+    title: 'URL Shortener',
+    description: 'Welcome to my URL Shortener',
+    currentRoute: '/shortener'
   });
+});
+
+// router.post('/shorten', shortenerController);
+
+// router.post('/shorten', async (req, res) => {
+//   const originalUrl = req.body.fullUrl;
+//   const shortUrl = `${baseUrl}/${shortId.generate()}`;
+//   res.render('blog/shortener', {
+//     shortUrl,
+//     originalUrl
+//   });
+// });
+
+router.get('/', async (req, res) => {
+  try {
+    const contributions = await fetchContributions(
+      process.env.GITHUB_USERNAME,
+      process.env.GITHUB_TOKEN
+    );
+    if (!contributions) {
+      throw new Error('Failed to fetch contributions');
+    }
+    const contributionDays = contributions.contributionCalendar.weeks.flatMap(week => 
+      week.contributionDays.map(day => ({
+        date: day.date,
+        contributionCount: day.contributionCount
+      }))
+    );
+
+    // Total commits across repositories
+    const totalCommits = contributions.commitContributionsByRepository.reduce(
+      (sum, repo) => sum + (repo.contributions.totalCount || 0),
+      0
+    );
+
+    res.render('blog/index', {
+      totalContributions: contributions.totalContributions,
+      totalCommits,
+      contributionDays,
+      title: 'My Portfolio',
+      description: 'Welcome to my Protfolio',
+      currentRoute: '/'
+  });
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 router.get('/posts', async (req, res) => {

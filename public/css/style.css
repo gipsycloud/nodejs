@@ -514,3 +514,22 @@ img {
   cursor: default;
   font-size: xxx-large;
 }
+
+.heatmap {
+  display: grid;
+  grid-template-columns: repeat(53, 12px); /* 53 weeks in a year */
+  gap: 2px;
+  margin: 20px 0;
+}
+
+.day {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+}
+
+.contribution-none { background-color: #ebedf0; }
+.contribution-low { background-color: #9be9a8; }
+.contribution-medium { background-color: #40c463; }
+.contribution-high { background-color: #30a14e; }
+.contribution-very-high { background-color: #216e39; }

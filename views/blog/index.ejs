@@ -92,7 +92,8 @@
     <!-- row -->
     <div class="row">
       <div class="col-md-12 col-lg-12">
-        <div class="service-card">
+        <div class="">
+          <!-- service-card -->
           <div class="heatmap-container">
             <div class="month-labels">
               <% for (let i = 0; i < 53; i++) { %>
@@ -115,23 +116,21 @@
           </div>
         </div>
 
-            <!-- Activity Types -->
-             <!-- Monthly Breakdown -->
-            <p>Total Contributions: <%= totalContributions.toLocaleString() %></p>
-            <p>Total Commits: <%= totalCommits.toLocaleString() %></p>
-            <div style="margin-bottom: 20px;">
-              <h3 style="color: #24292e; font-size: 16px; margin-bottom: 10px;">Monthly Breakdown</h3>
-              <div style="display: flex; gap: 10px; overflow-x: auto; padding-bottom: 10px;">
-                <% contributionDays.forEach(month => { %>
-                  <div style="min-width: 80px; background: #f6f8fa; padding: 10px; border-radius: 6px; text-align: center;">
-                    <div style="font-size: 12px; color: #586069;"><%= month.name %></div>
-                    <div style="font-size: 16px; font-weight: bold; color: #24292e;"><%= month.count %></div>
-                  </div>
-                <% }); %>
-              </div>
+        <div class="container px-4">
+          <!-- <h3 style="color: #24292e; font-size: 16px; margin-bottom: 10px;">Activity Types</h3> -->
+          <div class="row gx-5">
+            <div class="col">
+              <div class="p-3">Total Commits</div>
+              <h3 style="color: #24292e; font-size: 24px; margin-bottom: 10px;"><%= totalCommits.toLocaleString() %></h3>
+                <!-- % commitStats.byRepo.forEach(repo => { %> -->
+                  <!-- <li>%= repo.name %>: %= repo.count %> commits</li> -->
+                <!-- % }); %> -->
             </div>
-
-
+            <div class="col">
+              <div class="p-3">Total Contributions</div>
+              <h3 style="color: #24292e; font-size: 24px; margin-bottom: 10px;"><%= totalContributions.toLocaleString() %></h3>
+            </div>
+          </div>
         </div>
       </div>
     </div><!-- end of row -->

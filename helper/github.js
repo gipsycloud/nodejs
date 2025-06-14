@@ -45,7 +45,10 @@ async function fetchContributions(username, token) {
     if (data.errors) {
       throw new Error(data.errors.map(e => e.message).join(', '));
     }
-    return data.data.user.contributionsCollection;
+    return {
+      contributions: data.data.user.contributionsCollection,
+      commitContributions: data.data.user.contributionsCollection.commitContributionsByRepository,
+    }
   } catch (error) {
     console.error('Error fetching contributions:', error);
     return null;

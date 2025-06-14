@@ -137,7 +137,7 @@ router.get('/shortener', (req, res) => {
 
 router.get('/', async (req, res) => {
   try {
-    const contributions = await fetchContributions(
+    const {contributions, commitContributions} = await fetchContributions(
       process.env.GITHUB_USERNAME,
       process.env.GITHUB_TOKEN
     );
@@ -156,6 +156,14 @@ router.get('/', async (req, res) => {
       (sum, repo) => sum + (repo.contributions.totalCount || 0),
       0
     );
+
+    const commitStats = {
+      total: commitContributions.reduce((sum, repo) => sum + (repo.contributions.totalCount || 0), 0),
+      byRepo: commitContributions.map(repo => ({
+        name: repo.repository.nameWithOwner,
+        count: repo.contributions.totalCount || 0
+      })),
+    }
 
     // Calculate total contributions
     const monthLabels =[]
@@ -179,6 +187,7 @@ router.get('/', async (req, res) => {
       totalCommits,
       contributionDays,
       monthLabels,
+      commitStats,
       title: 'My Portfolio',
       description: 'Welcome to my Protfolio',
       currentRoute: '/'

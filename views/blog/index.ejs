@@ -93,8 +93,14 @@
     <div class="row">
       <div class="col-md-12 col-lg-12">
         <div class="service-card">
-          <div class="heatmap">
-            <%= totalContributions %>
+          <div class="heatmap-container">
+            <div class="month-labels">
+              <% for (let i = 0; i < 53; i++) { %>
+                <% const month = monthLabels.find(label=> label.weekIndex === i); %>
+                <div class="month-label"><%= month ? month.month : '' %></div>
+              <% } %>
+            </div>
+            <div class="heatmap">
             <% contributionDays.forEach(day => { %>
               <div 
                 class="day contribution-<%= 
@@ -107,21 +113,23 @@
               ></div>
             <% }) %>
           </div>
+        </div>
 
             <!-- Activity Types -->
              <!-- Monthly Breakdown -->
-              <p>Total Commits: <%= totalCommits.toLocaleString() %></p>
-  <div style="margin-bottom: 20px;">
-    <h3 style="color: #24292e; font-size: 16px; margin-bottom: 10px;">Monthly Breakdown</h3>
-    <div style="display: flex; gap: 10px; overflow-x: auto; padding-bottom: 10px;">
-      <% contributionDays.forEach(month => { %>
-        <div style="min-width: 80px; background: #f6f8fa; padding: 10px; border-radius: 6px; text-align: center;">
-          <div style="font-size: 12px; color: #586069;"><%= month.name %></div>
-          <div style="font-size: 16px; font-weight: bold; color: #24292e;"><%= month.count %></div>
-        </div>
-      <% }); %>
-    </div>
-  </div>
+            <p>Total Contributions: <%= totalContributions.toLocaleString() %></p>
+            <p>Total Commits: <%= totalCommits.toLocaleString() %></p>
+            <div style="margin-bottom: 20px;">
+              <h3 style="color: #24292e; font-size: 16px; margin-bottom: 10px;">Monthly Breakdown</h3>
+              <div style="display: flex; gap: 10px; overflow-x: auto; padding-bottom: 10px;">
+                <% contributionDays.forEach(month => { %>
+                  <div style="min-width: 80px; background: #f6f8fa; padding: 10px; border-radius: 6px; text-align: center;">
+                    <div style="font-size: 12px; color: #586069;"><%= month.name %></div>
+                    <div style="font-size: 16px; font-weight: bold; color: #24292e;"><%= month.count %></div>
+                  </div>
+                <% }); %>
+              </div>
+            </div>
 
 
         </div>

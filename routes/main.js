@@ -147,7 +147,7 @@ router.get('/', async (req, res) => {
     const contributionDays = contributions.contributionCalendar.weeks.flatMap(week => 
       week.contributionDays.map(day => ({
         date: day.date,
-        contributionCount: day.contributionCount
+        contributionCount: Number(day.contributionCount) || 0,
       }))
     );
 
@@ -157,10 +157,28 @@ router.get('/', async (req, res) => {
       0
     );
 
+    // Calculate total contributions
+    const monthLabels =[]
+    const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    let currentMonth = null;
+    contributions.contributionCalendar.weeks.forEach((week, weekIndex) => {
+      const firstDay = week.contributionDays[0].date;
+      if(firstDay) {
+        const date = new Date(firstDay);
+        const month = date.getMonth();
+        if (currentMonth !== month) {
+          currentMonth = month;
+          monthLabels.push({month: monthNames[currentMonth], weekIndex});
+          currentMonth = month;
+        }
+      }
+    });
+
     res.render('blog/index', {
-      totalContributions: contributions.totalContributions,
+      totalContributions: contributions.contributionCalendar.totalContributions,
       totalCommits,
       contributionDays,
+      monthLabels,
       title: 'My Portfolio',
       description: 'Welcome to my Protfolio',
       currentRoute: '/'

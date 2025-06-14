@@ -515,11 +515,28 @@ img {
   font-size: xxx-large;
 }
 
+.heatmap-container {
+  margin: 20px 0 0 200px;
+}
+
+.month-labels {
+  display: grid;
+  grid-template-columns: repeat(53, 12px);
+  gap: 2px;
+  margin-bottom: 5px;
+}
+
+.month-label {
+  font-size: 12px;
+  text-align: center;
+  color: #333;
+}
+
 .heatmap {
   display: grid;
   grid-template-columns: repeat(53, 12px); /* 53 weeks in a year */
   gap: 2px;
-  margin: 20px 0;
+  /* margin: 20px 0; */
 }
 
 .day {
@@ -533,3 +550,17 @@ img {
 .contribution-medium { background-color: #40c463; }
 .contribution-high { background-color: #30a14e; }
 .contribution-very-high { background-color: #216e39; }
+
+@media (max-width: 600px) {
+  .heatmap-container {
+    margin: 20px 0 0 200px;
+  }
+  .month-labels, .heatmap {
+    grid-template-columns: repeat(53, 10px);
+  }
+  .month-label, .day {
+    width: 10px;
+    height: 10px;
+    font-size: 10px;
+  }
+}

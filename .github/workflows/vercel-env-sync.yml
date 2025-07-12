@@ -1,0 +1,31 @@
+name: Sync .env to Vercel
+
+on:
+  push:
+    branches: [main] # or your default branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Install Vercel CLI
+        run: npm install -g vercel
+
+      - name: Sync .env variables to Vercel
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+        run: |
+          # Loop through .env and add each to Vercel (example uses .env.local)
+          while IFS='=' read -r key value
+          do
+            if [[ ! -z "$key" ]]; then
+              echo "Setting $key"
+              echo "$value" | vercel env add "$key" production --token $VERCEL_TOKEN --yes || true
+            fi
+          done < .env.local

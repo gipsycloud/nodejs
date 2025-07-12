@@ -30,8 +30,8 @@ jobs:
           echo "VERCEL_PROJECT_ID=${{ secrets.VERCEL_PROJECT_ID }}" >> .env
           vercel login --token ${{ secrets.VERCEL_TOKEN }}
           npx vercel env pull .env.local
-          cat .env | grep -v '^#' | while read line; do
-            key=$(echo $line | cut -d '=' -f 1)
-            value=$(echo $line | cut -d '=' -f 2-)
-            vercel env add --name "$key" --environment production --value "$value" --yes
+          grep -v '^#' .env | grep -E '=' | while IFS='=' read -r key value; do
+            if [ -n "$key" ] && [ -n "$value" ]; then
+              vercel env add --name "$key" --environment production --value "$value" --yes
+            fi
           done

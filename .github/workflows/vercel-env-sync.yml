@@ -24,15 +24,14 @@ jobs:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-      - run: |
+      - name: Vercel
+        run: |
           echo "VERCEL_ORG_ID=${{ secrets.VERCEL_ORG_ID }}" >> .env
           echo "VERCEL_PROJECT_ID=${{ secrets.VERCEL_PROJECT_ID }}" >> .env
           vercel login --token ${{ secrets.VERCEL_TOKEN }}
           npx vercel env pull .env.local
           cat .env | grep -v '^#' | while read line; do
-              key=$(echo $line | cut -d '=' -f 1)
-              value=$(echo $line | cut -d '=' -f 2-)
-              vercel env add --name "$key" --environment production --value "$value" --yes
+            key=$(echo $line | cut -d '=' -f 1)
+            value=$(echo $line | cut -d '=' -f 2-)
+            vercel env add --name "$key" --environment production --value "$value" --yes
           done
-      - run: npm ci
-      - run: npm run build --if-present

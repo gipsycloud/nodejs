@@ -21,7 +21,6 @@ jobs:
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
         run: |
-          # Loop through .env and add each to Vercel (example uses .env.local)
           while IFS='=' read -r key value
           do
             if [[ ! -z "$key" ]]; then

@@ -24,11 +24,14 @@ jobs:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-        run: |
-          while IFS='=' read -r key value
-          do
-            if [[ ! -z "$key" ]]; then
-              echo "Setting $key"
-              echo "$value" | vercel env add "$key" production --token $VERCEL_TOKEN --yes || true
-            fi
-          done < .env.local
+      - run: |
+          npm install -g vercel
+          echo "VERCEL_ORG_ID=${{ secrets.VERCEL_ORG_ID }}" >> .env
+          echo "VERCEL_PROJECT_ID=${{ secrets.VERCEL_PROJECT_ID }}" >> .env
+          vercel login --token ${{ secrets.VERCEL_TOKEN }}
+          npx vercel env pull .env.local
+          cat .env | grep -v '^#' | while read line; do
+              key=$(echo $line | cut -d '=' -f 1)
+              value=$(echo $line | cut -d '=' -f 2-)
+              vercel env add --name "$key" --environment production --value "$value" --yes
+          done

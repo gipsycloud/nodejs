@@ -34,9 +34,9 @@ jobs:
           vercel login --token ${{ secrets.VERCEL_TOKEN }}
           npx vercel env pull .env.local
           cat .env | grep -v '^#' | while read line; do
-            key=$(echo $line | cut -d '=' -f 1)
-            value=$(echo $line | cut -d '=' -f 2-)
-            vercel env add $key production $value
+             key=$(echo $line | cut -d '=' -f 1)
+             value=$(echo $line | cut -d '=' -f 2-)
+             vercel env add --name "$key" --environment production --value "$value" --yes
           done
       - run: npm ci
       - run: npm run build --if-present

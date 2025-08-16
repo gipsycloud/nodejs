@@ -137,14 +137,19 @@ router.get('/shortener', (req, res) => {
 
 router.get('/', async (req, res) => {
   try {
-    const {contributions, commitContributions} = await fetchContributions(
+    const githubData = await fetchContributions(
       process.env.GITHUB_USERNAME,
       process.env.GITHUB_TOKEN
     );
+
+    // Safely destructure, providing a fallback empty object if githubData is null/undefined
+    const { contributions, commitContributions } = githubData || {};
+
     if (!contributions) {
-      throw new Error('Failed to fetch contributions');
+      // This will be caught by the catch block below
+      throw new Error('Failed to fetch contributions or data is not in the expected format.');
     }
-    const contributionDays = contributions.contributionCalendar.weeks.flatMap(week => 
+    const contributionDays = contributions.contributionCalendar.weeks.flatMap(week =>
       week.contributionDays.map(day => ({
         date: day.date,
         contributionCount: Number(day.contributionCount) || 0,
@@ -166,17 +171,17 @@ router.get('/', async (req, res) => {
     }
 
     // Calculate total contributions
-    const monthLabels =[]
+    const monthLabels = []
     const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     let currentMonth = null;
     contributions.contributionCalendar.weeks.forEach((week, weekIndex) => {
       const firstDay = week.contributionDays[0].date;
-      if(firstDay) {
+      if (firstDay) {
         const date = new Date(firstDay);
         const month = date.getMonth();
         if (currentMonth !== month) {
           currentMonth = month;
-          monthLabels.push({month: monthNames[currentMonth], weekIndex});
+          monthLabels.push({ month: monthNames[currentMonth], weekIndex });
           currentMonth = month;
         }
       }
@@ -191,9 +196,21 @@ router.get('/', async (req, res) => {
       title: 'My Portfolio',
       description: 'Welcome to my Protfolio',
       currentRoute: '/'
-  });
+    });
   } catch (err) {
-    console.log(err);
+    console.error("Error fetching GitHub contributions:", err);
+    // Render the page with empty/default data and an error message
+    res.render('blog/index', {
+      totalContributions: 0,
+      totalCommits: 0,
+      contributionDays: [],
+      monthLabels: [],
+      commitStats: { total: 0, byRepo: [] },
+      title: 'My Portfolio',
+      description: 'Welcome to my Portfolio',
+      currentRoute: '/',
+      githubError: `Could not fetch GitHub contribution data. Please check my profile directly on <a href="https://github.com/${process.env.GITHUB_USERNAME}" target="_blank" rel="noopener noreferrer">GitHub</a>.`
+    });
   }
 });
 

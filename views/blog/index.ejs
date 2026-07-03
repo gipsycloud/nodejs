@@ -1,341 +1,256 @@
-<!-- <div class="author">
-  <div class="author_heading">Hi, I am Raddy.</div>
-  <div class="author_body">Web developer and content creator</div>
-</div> -->
-
-<!-- <img src="/img/portfolio.webp" alt="Hero image" class="hero-image" width="981" height="528"> -->
-
-<!-- about section -->
-<section class="section background_image" id="about">
+<section class="section hero-portfolio background_image" id="about">
   <div class="overlay"></div>
-  <!-- container -->
-  <div class="container text-center zindex">
-    <!-- about wrapper -->
-    <div class="about">
-      <div class="about-img-holder">
-        <img src="/img/man.png" class="about-img" alt="atw portfolio">
-      </div>
-      <div class="about-caption">
-        <!-- <p class="section-subtitle">Who Am I ?</p> -->
-        <h2 class="section-title mb-3">Hi, I am IEB_BOY</h2>
-        <p>
-          I am a self-motivated and experienced web developer with a demonstrated history of working in the program
-          development industry I'm challenging by using my skill and self study the latest technology.
+  <div class="container zindex">
+    <div class="portfolio-hero">
+      <div class="portfolio-hero-copy">
+        <p class="section-subtitle hero-kicker">Developer Portfolio</p>
+        <h2 class="hero-title">Hi, I am IEB_BOY</h2>
+        <p class="hero-description">
+          I build practical web experiences with a focus on clean UI, solid backend logic, and a fast learning
+          mindset.
+          This space highlights the work, tools, and habits that shape how I solve problems.
         </p>
-        <a href="/download">
-          <button class="btn-rounded btn btn-outline-primary mt-4">Download CV</button>
-        </a>
-        <a href="/#contact">
-          <button class="btn-rounded btn btn-outline-primary mt-4">Contact Info</button>
-        </a>
-      </div>
-    </div><!-- end of about wrapper -->
-  </div><!-- end of container -->
-</section> <!-- end of about section -->
-
-<!-- service section -->
-<section class="section" id="service">
-  <div class="container text-center">
-    <p class="section-subtitle">What I Do ?</p>
-    <h6 class="section-title mb-6">Service</h6>
-    <!-- row -->
-    <div class="row">
-      <div class="col-md-6 col-lg-3">
-        <div class="service-card">
-          <div class="body">
-            <img src="/img/pencil-case.svg" alt="atw portfolio" class="icon">
-            <h6 class="title">Drawing</h6>
-            <p class="subtitle">Labore velit culpa adipisci excepturi consequuntur itaque in nam
-              molestias dolorem iste quod.</p>
-          </div>
+        <div class="hero-actions">
+          <a href="/download" class="btn btn-outline-primary btn-rounded">Download CV</a>
+          <a href="#contact" class="btn btn-primary btn-rounded">Contact Me</a>
         </div>
-      </div>
-      <div class="col-md-6 col-lg-3">
-        <div class="service-card">
-          <div class="body">
-            <img src="/img/responsive.svg" alt="atw portfolio" class="icon">
-            <h6 class="title">Designing</h6>
-            <p class="subtitle">Labore velit culpa adipisci excepturi consequuntur itaque in nam
-              molestias dolorem iste quod.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-3">
-        <div class="service-card">
-          <div class="body">
-            <img src="/img/toolbox.svg" alt="atw portfolio" class="icon">
-            <h6 class="title">Responsiving</h6>
-            <p class="subtitle">Labore velit culpa adipisci excepturi consequuntur itaque in nam
-              molestias dolorem iste quod.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-3">
-        <div class="service-card">
-          <div class="body">
-            <img src="/img/analytics.svg" alt="atw portfolio" class="icon">
-            <h6 class="title">Analyticing</h6>
-            <p class="subtitle">Labore velit culpa adipisci excepturi consequuntur itaque in nam
-              molestias dolorem iste quod.</p>
-          </div>
-        </div>
-      </div>
-    </div><!-- end of row -->
-  </div>
-</section><!-- end of service section -->
-
-<!-- github section -->
-<section class="section" id="service">
-  <div class="container text-center">
-    <p class="section-subtitle">What I Did ?</p>
-    <h6 class="section-title mb-6">GitHub Contributions</h6>
-    <% if (typeof githubError !=='undefined' && githubError) { %>
-      <div class="alert alert-warning" role="alert">
-        <%- githubError %>
-      </div>
-      <% } else { %>
-        <!-- row -->
-        <div class="row">
-          <div class="col-md-12 col-lg-12">
-            <div class="">
-              <!-- service-card -->
-              <div class="heatmap-container">
-                <div class="month-labels">
-                  <% for (let i=0; i < 53; i++) { %>
-                    <% const month=monthLabels.find(label=> label.weekIndex === i); %>
-                      <div class="month-label">
-                        <%= month ? month.month : '' %>
-                      </div>
-                      <% } %>
-                </div>
-                <div class="heatmap">
-                  <% contributionDays.forEach(day=> { %>
-                    <div class="day contribution-<%= 
-                    day.contributionCount === 0 ? 'none' : 
-                    day.contributionCount < 3 ? 'low' : 
-                    day.contributionCount < 5 ? 'medium' : 
-                    day.contributionCount < 10 ? 'high' : 'very-high' 
-                  %>" title="<%= day.date %>: <%= day.contributionCount %> contributions"></div>
-                    <% }) %>
-                </div>
-              </div>
-
-              <div class="container px-4">
-                <!-- <h3 style="color: #24292e; font-size: 16px; margin-bottom: 10px;">Activity Types</h3> -->
-                <div class="row gx-5">
-                  <div class="col">
-                    <div class="p-3">Total Commits</div>
-                    <h3 style="color: #24292e; font-size: 24px; margin-bottom: 10px;">
-                      <%= totalCommits.toLocaleString() %>
-                    </h3>
-                    <!-- % commitStats.byRepo.forEach(repo => { %> -->
-                    <!-- <li>%= repo.name %>: %= repo.count %> commits</li> -->
-                    <!-- % }); %> -->
-                  </div>
-                  <div class="col">
-                    <div class="p-3">Total Contributions</div>
-                    <h3 style="color: #24292e; font-size: 24px; margin-bottom: 10px;">
-                      <%= totalContributions.toLocaleString() %>
-                    </h3>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div><!-- end of row -->
-        <% } %>
-  </div>
-</section><!-- end of github section -->
-
-<!-- portfolio section -->
-<section class="section" id="portfolio">
-  <div class="container text-center">
-    <p class="section-subtitle">What I Did ?</p>
-    <h6 class="section-title mb-6">Portfolio</h6>
-    <!-- row -->
-    <div class="row">
-      <div class="col-md-4">
-        <a href="#" class="portfolio-card">
-          <img src="/img/folio-1.jpg" class="portfolio-card-img" alt="atw portfolio">
-          <span class="portfolio-card-overlay">
-            <span class="portfolio-card-caption">
-              <h4>Web Designing</h5>
-                <p class="font-weight-normal">Category: Web Templates</p>
-            </span>
-          </span>
-        </a>
-      </div>
-      <div class="col-md-4">
-        <a href="#" class="portfolio-card">
-          <img class="portfolio-card-img" src="/img/folio-2.jpg" class="img-responsive rounded" alt="atw portfolio">
-          <span class="portfolio-card-overlay">
-            <span class="portfolio-card-caption">
-              <h4>Web Designing</h5>
-                <p class="font-weight-normal">Category: Web Templates</p>
-            </span>
-          </span>
-        </a>
-      </div>
-      <div class="col-md-4">
-        <a href="#" class="portfolio-card">
-          <img class="portfolio-card-img" src="/img/folio-3.jpg" class="img-responsive rounded" alt="atw portfolio">
-          <span class="portfolio-card-overlay">
-            <span class="portfolio-card-caption">
-              <h4>Web Designing</h5>
-                <p class="font-weight-normal">Category: Web Templates</p>
-            </span>
-          </span>
-        </a>
-      </div>
-    </div><!-- end of row -->
-  </div><!-- end of container -->
-</section> <!-- end of portfolio section -->
-
-<!-- pricing section -->
-<section class="section" id="pricing">
-  <div class="container text-center">
-    <p class="section-subtitle">I specialize in a range of skills ..</p>
-    <h6 class="section-title mb-6">Coding Solution</h6>
-    <!-- row -->
-    <div class="pricing-wrapper">
-      <div class="pricing-card m-4">
-        <div class="pricing-card-header">
-          <img class="pricing-card-icon" src="img/scooter.svg" alt="atw portfolio">
-        </div>
-        <div class="pricing-card-body">
-          <h6 class="pricing-card-title">Front-end Development</h6>
-          <div class="pricing-card-list">
-            <p>I am in good for HTML, CSS, Javascript, Jquery, Ajax, Bootstrap, Tailwind .. </p>
-          </div>
-        </div>
-      </div>
-      <div class="pricing-card m-4">
-        <div class="pricing-card-header">
-          <img class="pricing-card-icon" src="img/shipped.svg" alt="atw portfolio">
-        </div>
-        <div class="pricing-card-body">
-          <h6 class="pricing-card-title">Back-end Development</h6>
-          <div class="pricing-card-list">
-            <p>I am in good for Ruby on Rails, Node.js, Express.js, EJS ..</p>
-          </div>
-        </div>
-      </div>
-      <div class="pricing-card m-4">
-        <div class="pricing-card-header">
-          <img class="pricing-card-icon" src="img/startup.svg" alt="atw portfolio">
-        </div>
-        <div class="pricing-card-body">
-          <h6 class="pricing-card-title">Database Management</h6>
-          <div class="pricing-card-list">
-            <p>I am in good for MySQL, MongoDB, PostgreSQL, SQLite ..</p>
-          </div>
-        </div>
-      </div>
-    </div><!-- end of pricing wrapper -->
-
-    <div class="pricing-wrapper">
-      <div class="pricing-card m-4">
-        <div class="pricing-card-header">
-          <img class="pricing-card-icon" src="img/scooter.svg" alt="atw portfolio">
-        </div>
-        <div class="pricing-card-body">
-          <h6 class="pricing-card-title">Version Control</h6>
-          <div class="pricing-card-list">
-            <p>I am in good for Git, Github, Bitbucket .. </p>
-          </div>
+        <div class="hero-tags" aria-label="Core strengths">
+          <span>Node.js</span>
+          <span>Express</span>
+          <span>EJS</span>
+          <span>MongoDB</span>
         </div>
       </div>
 
-      <div class="pricing-card m-4">
-        <div class="pricing-card-header">
-          <img class="pricing-card-icon" src="img/scooter.svg" alt="atw portfolio">
-        </div>
-        <div class="pricing-card-body">
-          <h6 class="pricing-card-title">Testing Server</h6>
-          <div class="pricing-card-list">
-            <p>I am in good for Vercel, Render, Heroku, Railways .. </p>
+      <div class="portfolio-hero-card">
+        <img src="/img/man.png" class="about-img" alt="Developer portrait">
+        <div class="hero-card-stats">
+          <div>
+            <strong><%= totalContributions.toLocaleString() %></strong>
+            <span>GitHub contributions</span>
           </div>
-        </div>
-      </div>
-
-      <div class="pricing-card m-4">
-        <div class="pricing-card-header">
-          <img class="pricing-card-icon" src="img/scooter.svg" alt="atw portfolio">
-        </div>
-        <div class="pricing-card-body">
-          <h6 class="pricing-card-title">Working Culture</h6>
-          <div class="pricing-card-list">
-            <p>I am in good for working with team members .. </p>
+          <div>
+            <strong><%= totalCommits.toLocaleString() %></strong>
+            <span>Commits tracked</span>
           </div>
         </div>
       </div>
     </div>
-  </div> <!-- end of container -->
-</section><!-- end of pricing section -->
+  </div>
+</section>
 
-
-<!-- section -->
-<section class="section-sm bg-primary">
-  <!-- container -->
-  <div class="container text-center text-sm-left">
-    <!-- row -->
-    <div class="row align-items-center">
-      <div class="col-sm offset-md-1 mb-4 mb-md-0">
-        <h6 class="title text-light">Want to work with me?</h6>
-        <p class="m-0 text-light">Always feel Free to Contact & Hire me</p>
+<section class="section" id="service">
+  <div class="container text-center">
+    <p class="section-subtitle">What I Focus On</p>
+    <h6 class="section-title mb-6">Core Services</h6>
+    <div class="row portfolio-grid">
+      <div class="col-md-6 col-lg-3">
+        <div class="service-card">
+          <div class="body">
+            <img src="/img/responsive.svg" alt="Frontend development" class="icon">
+            <h6 class="title">Frontend Development</h6>
+            <p class="subtitle">Responsive interfaces with a strong sense of layout, clarity, and usability.</p>
+          </div>
+        </div>
       </div>
-      <div class="col-sm offset-sm-2 offset-md-3">
-        <a href="mailto:aungthiwinn@gmail.com">
-          <button class="btn btn-lg my-font btn-light rounded">Hire Me</button>
+      <div class="col-md-6 col-lg-3">
+        <div class="service-card">
+          <div class="body">
+            <img src="/img/toolbox.svg" alt="Backend development" class="icon">
+            <h6 class="title">Backend Development</h6>
+            <p class="subtitle">API-driven features, routing, and application structure that scale with the project.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="service-card">
+          <div class="body">
+            <img src="/img/analytics.svg" alt="Data and insights" class="icon">
+            <h6 class="title">Data & Insights</h6>
+            <p class="subtitle">Turning usage, stats, and feedback into decisions that improve the product.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="service-card">
+          <div class="body">
+            <img src="/img/pencil-case.svg" alt="Design systems" class="icon">
+            <h6 class="title">Design Systems</h6>
+            <p class="subtitle">Consistent styling patterns that keep the interface polished and easy to extend.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-emphasis" id="portfolio">
+  <div class="container">
+    <div class="section-heading text-center">
+      <p class="section-subtitle">Selected Work</p>
+      <h6 class="section-title mb-6">Portfolio Highlights</h6>
+    </div>
+    <div class="row portfolio-feature-grid">
+      <div class="col-md-4">
+        <a href="#" class="portfolio-card">
+          <img src="/img/folio-1.jpg" class="portfolio-card-img" alt="Portfolio project preview 1">
+          <span class="portfolio-card-overlay">
+            <span class="portfolio-card-caption">
+              <h4>Project Showcase</h4>
+              <p class="font-weight-normal">Case study layout</p>
+            </span>
+          </span>
         </a>
       </div>
-    </div> <!-- end of row -->
-  </div> <!-- end of container -->
-</section> <!-- end of section -->
+      <div class="col-md-4">
+        <a href="#" class="portfolio-card">
+          <img src="/img/folio-2.jpg" class="portfolio-card-img" alt="Portfolio project preview 2">
+          <span class="portfolio-card-overlay">
+            <span class="portfolio-card-caption">
+              <h4>Web Application</h4>
+              <p class="font-weight-normal">Feature-driven build</p>
+            </span>
+          </span>
+        </a>
+      </div>
+      <div class="col-md-4">
+        <a href="#" class="portfolio-card">
+          <img src="/img/folio-3.jpg" class="portfolio-card-img" alt="Portfolio project preview 3">
+          <span class="portfolio-card-overlay">
+            <span class="portfolio-card-caption">
+              <h4>UI Refresh</h4>
+              <p class="font-weight-normal">Original visual design</p>
+            </span>
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
 
-<!-- contact section -->
+<section class="section" id="github">
+  <div class="container">
+    <div class="section-heading text-center">
+      <p class="section-subtitle">Proof of Work</p>
+      <h6 class="section-title mb-4">GitHub Contributions</h6>
+    </div>
+
+    <% if (typeof githubError !== 'undefined' && githubError) { %>
+      <div class="alert alert-warning" role="alert">
+        <%- githubError %>
+      </div>
+    <% } else { %>
+      <div class="github-panel">
+        <div class="heatmap-container">
+          <div class="month-labels">
+            <% for (let i = 0; i < 53; i++) { %>
+              <% const month = monthLabels.find(label => label.weekIndex === i); %>
+              <div class="month-label"><%= month ? month.month : '' %></div>
+            <% } %>
+          </div>
+          <div class="heatmap">
+            <% contributionDays.forEach(day => { %>
+              <div
+                class="day contribution-<%= day.contributionCount === 0 ? 'none' : day.contributionCount < 3 ? 'low' : day.contributionCount < 5 ? 'medium' : day.contributionCount < 10 ? 'high' : 'very-high' %>"
+                title="<%= day.date %>: <%= day.contributionCount %> contributions">
+              </div>
+            <% }) %>
+          </div>
+        </div>
+
+        <div class="github-stats">
+          <div class="stat-card">
+            <span>Total Commits</span>
+            <strong><%= totalCommits.toLocaleString() %></strong>
+          </div>
+          <div class="stat-card">
+            <span>Total Contributions</span>
+            <strong><%= totalContributions.toLocaleString() %></strong>
+          </div>
+        </div>
+      </div>
+    <% } %>
+  </div>
+</section>
+
+<section class="section" id="pricing">
+  <div class="container">
+    <div class="section-heading text-center">
+      <p class="section-subtitle">What I Bring</p>
+      <h6 class="section-title mb-6">Coding Strengths</h6>
+    </div>
+
+    <div class="pricing-wrapper">
+      <div class="pricing-card m-4">
+        <div class="pricing-card-header">
+          <img class="pricing-card-icon" src="/img/scooter.svg" alt="Frontend stack">
+        </div>
+        <div class="pricing-card-body">
+          <h6 class="pricing-card-title">Frontend</h6>
+          <div class="pricing-card-list">
+            <p>HTML, CSS, JavaScript, jQuery, Ajax, Bootstrap, and layout systems.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="pricing-card m-4">
+        <div class="pricing-card-header">
+          <img class="pricing-card-icon" src="/img/shipped.svg" alt="Backend stack">
+        </div>
+        <div class="pricing-card-body">
+          <h6 class="pricing-card-title">Backend</h6>
+          <div class="pricing-card-list">
+            <p>Node.js, Express.js, EJS, and building server-rendered applications.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="pricing-card m-4">
+        <div class="pricing-card-header">
+          <img class="pricing-card-icon" src="/img/startup.svg" alt="Database stack">
+        </div>
+        <div class="pricing-card-body">
+          <h6 class="pricing-card-title">Databases</h6>
+          <div class="pricing-card-list">
+            <p>MongoDB, MySQL, PostgreSQL, and data modeling for real projects.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-sm bg-primary">
+  <div class="container text-center text-sm-left">
+    <div class="row align-items-center">
+      <div class="col-sm offset-md-1 mb-4 mb-md-0">
+        <h6 class="title text-light">Want to work together?</h6>
+        <p class="m-0 text-light">I am open to freelance work, collaborations, and portfolio opportunities.</p>
+      </div>
+      <div class="col-sm offset-sm-2 offset-md-3">
+        <a href="mailto:aungthiwinn@gmail.com" class="btn btn-lg my-font btn-light rounded">Hire Me</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="section" id="contact">
   <div class="container text-center">
     <p class="section-subtitle">How can you communicate?</p>
     <h6 class="section-title mb-5">Contact Me</h6>
     <div class="contact-info-upper-container">
       <div class="contact-info-container">
-        <a href="javascript:void(0)" class="link"><i class="icon ti-linkedin"></i></a>
-        <p><a href="https://www.linkedin.com/in/aungthiwin" target="_blank">Linkedin</a></p>
+        <a href="https://www.linkedin.com/in/aungthiwin" target="_blank" rel="noopener noreferrer" class="link">
+          <i class="icon ti-linkedin"></i>
+        </a>
+        <p><a href="https://www.linkedin.com/in/aungthiwin" target="_blank" rel="noopener noreferrer">LinkedIn</a></p>
       </div>
       <div class="contact-info-container">
-        <a href="javascript:void(0)" class="link"><i class="icon ti-github"></i></a>
-        <p><a href="https://github.com/gipsycloud" target="_blank">Github</a></p>
+        <a href="https://github.com/gipsycloud" target="_blank" rel="noopener noreferrer" class="link">
+          <i class="icon ti-github"></i>
+        </a>
+        <p><a href="https://github.com/gipsycloud" target="_blank" rel="noopener noreferrer">GitHub</a></p>
       </div>
     </div>
-    <!-- contact form -->
-    <!-- <form action="" class="contact-form col-md-10 col-lg-8 m-auto">
-      <div class="form-row">
-        <div class="form-group col-sm-6">
-          <input type="text" size="50" class="form-control" placeholder="Your Name" required>
-        </div>
-        <div class="form-group col-sm-6">
-          <input type="email" class="form-control" placeholder="Enter Email" requried>
-        </div>
-        <div class="form-group col-sm-12">
-          <textarea name="comment" id="comment" rows="6" class="form-control" placeholder="Write Something"></textarea>
-        </div>
-        <div class="form-group col-sm-12 mt-3">
-          <input type="submit" value="Send Message" class="btn btn-outline-primary rounded">
-        </div>
-      </div>
-    </form>end of contact form -->
-  </div><!-- end of container -->
-</section><!-- end of contact section -->
-
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    function getColor(count) {
-      if (count === 0) return '#ebedf0'; // No contributions
-      if (count < 5) return '#9be9a8';  // Low
-      if (count < 10) return '#40c463'; // Medium
-      if (count < 20) return '#30a14e'; // High
-      return '#216e39'; // Very high
-    }
-  });
-</script>
+  </div>
+</section>

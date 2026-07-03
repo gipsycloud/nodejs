@@ -55,4 +55,4 @@ async function fetchContributions(username, token) {
   }
 }
 
-export default { fetchContributions }; // export the fetchContributions function
+module.exports = { fetchContributions }; // export the fetchContributions function

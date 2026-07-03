@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const fs = require('fs');
-const { shortenerController } = require('../controllers/shortenerController');
+// const { shortenerController } = require('../controllers/shortenerController');
 const Post = require('../models/Post');
-const { fetchContributions } = require('../helper/github').default;
+const { fetchContributions } = require('../helper/github');
 // const Shortener = require('../models/shortenerModel');
 // const path = require('path');
 

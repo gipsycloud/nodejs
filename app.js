@@ -37,12 +37,17 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 
+const mongoUrl = process.env.MONGODB_URI;
+if (!mongoUrl) {
+  throw new Error('Cannot init client. Please provide correct options');
+}
+
 app.use(cookieParser());
 app.use(session({
   secret: process.env.SESSION_SECRET,  // you can add your own secret here (e.g. pass, mysecret)
   resave: false,
   saveUninitialized: false,
-  store: MongoStore.create({ mongoUrl: process.env.MONGODB_URI }),
+  store: MongoStore.create({ mongoUrl }),
   cookie: {
     // maxAge: 2678400000 // 31 days
     maxAge: 86400000 // 24 hours

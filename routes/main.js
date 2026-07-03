@@ -4,6 +4,9 @@ const fs = require('fs');
 // const { shortenerController } = require('../controllers/shortenerController');
 const Post = require('../models/Post');
 const { fetchContributions } = require('../helper/github');
+const { speedInsights } = require('@vercel/speed-insights');
+
+// import { SpeedInsights } from "@vercel/speed-insights/next"
 // const Shortener = require('../models/shortenerModel');
 // const path = require('path');
 

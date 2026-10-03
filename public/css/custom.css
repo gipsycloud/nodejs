@@ -13535,6 +13535,47 @@ pre .code {
   row-gap: 1.5rem;
 }
 
+.project-group + .project-group {
+  margin-top: 2.5rem;
+}
+
+.project-group-title {
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+}
+
+.project-card {
+  height: 100%;
+  padding: clamp(1.5rem, 3vw, 2rem);
+  border: 1px solid rgba(105, 90, 166, 0.12);
+  border-radius: 24px;
+  background: #fff;
+  box-shadow: 0 16px 40px rgba(28, 28, 28, 0.08);
+}
+
+.project-card .project-category {
+  margin-bottom: 0.65rem;
+  color: #695aa6;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.project-card h4 {
+  margin-bottom: 0.75rem;
+}
+
+.project-card p:not(.project-category) {
+  color: #6c757d;
+}
+
+.project-card a {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-weight: 700;
+}
+
 .portfolio-card {
   position: relative;
   display: block;
@@ -13594,5 +13635,260 @@ pre .code {
 
   .hero-actions .btn {
     width: 100%;
+  }
+}
+
+.hero-portfolio {
+  height: auto;
+  min-height: 100vh;
+  overflow: hidden;
+  padding-top: 8rem;
+  padding-bottom: 5rem;
+  background-position: center 45%;
+}
+
+.hero-portfolio .overlay {
+  background: linear-gradient(115deg, rgba(248, 247, 255, 0.94), rgba(247, 245, 255, 0.79) 52%, rgba(236, 231, 255, 0.62));
+}
+
+.portfolio-hero {
+  grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+  gap: clamp(2rem, 5vw, 5rem);
+}
+
+.portfolio-hero-copy {
+  padding: clamp(1.75rem, 4vw, 3.5rem);
+  border-color: rgba(255, 255, 255, 0.72);
+  background: rgba(255, 255, 255, 0.76);
+}
+
+.hero-kicker {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1.25rem;
+  color: #695aa6;
+  font-weight: 700;
+}
+
+.hero-kicker-dot {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background: #3ca87a;
+  box-shadow: 0 0 0 5px rgba(60, 168, 122, 0.12);
+}
+
+.hero-title {
+  max-width: 12ch;
+  font-size: clamp(3rem, 5.4vw, 5.1rem);
+  line-height: 1.02;
+}
+
+.hero-title span {
+  color: #695aa6;
+}
+
+.hero-description {
+  max-width: 38rem;
+  color: #596174;
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+.home-project-panel {
+  display: grid;
+  gap: 1rem;
+  padding: clamp(1.25rem, 2vw, 1.75rem);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.75);
+  box-shadow: 0 28px 80px rgba(49, 39, 91, 0.16);
+  backdrop-filter: blur(16px);
+}
+
+.home-panel-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.25rem 0.25rem 0.5rem;
+  color: #343047;
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.home-panel-count {
+  color: #88839a;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+}
+
+.home-featured-project {
+  display: flex;
+  min-height: 275px;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: clamp(1.5rem, 3vw, 2rem);
+  border-radius: 23px;
+  background:
+    radial-gradient(circle at 88% 18%, rgba(255, 255, 255, 0.25), transparent 28%),
+    linear-gradient(140deg, #514386, #7868b5 68%, #9382cf);
+  color: #fff;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.home-featured-project:hover,
+.home-featured-project:focus-visible {
+  color: #fff;
+  transform: translateY(-3px);
+  box-shadow: 0 16px 32px rgba(70, 56, 124, 0.24);
+}
+
+.home-featured-project .home-project-label {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.home-project-label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.home-project-mark {
+  display: grid;
+  width: 3rem;
+  height: 3rem;
+  place-items: center;
+  margin: 1.4rem 0 0.85rem;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.16);
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.home-project-name {
+  font-family: "Baloo Paaji", cursive;
+  font-size: 2rem;
+  line-height: 1.1;
+}
+
+.home-project-description {
+  max-width: 19rem;
+  margin-top: 0.45rem;
+  color: rgba(255, 255, 255, 0.83);
+  font-size: 0.92rem;
+}
+
+.home-project-link {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 1.5rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.home-project-link span {
+  font-size: 1.15rem;
+}
+
+.home-personal-project {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 1rem;
+  border: 1px solid #eeedf4;
+  border-radius: 20px;
+  background: #fff;
+  color: #343047;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.home-personal-project:hover,
+.home-personal-project:focus-visible {
+  border-color: rgba(105, 90, 166, 0.42);
+  color: #343047;
+  transform: translateY(-2px);
+}
+
+.home-personal-mark {
+  display: grid;
+  width: 3rem;
+  height: 3rem;
+  flex: 0 0 3rem;
+  place-items: center;
+  border-radius: 15px;
+  background: #f0edfa;
+  color: #695aa6;
+  font-family: "Baloo Paaji", cursive;
+  font-size: 1.75rem;
+}
+
+.home-personal-project strong,
+.home-personal-description {
+  display: block;
+}
+
+.home-personal-project strong {
+  margin-top: 0.15rem;
+  font-size: 1rem;
+}
+
+.home-personal-description {
+  margin-top: 0.1rem;
+  color: #777487;
+  font-size: 0.83rem;
+}
+
+.home-personal-arrow {
+  margin-left: auto;
+  color: #695aa6;
+  font-size: 1.2rem;
+}
+
+@media (max-width: 991.98px) {
+  .portfolio-hero {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .home-project-panel {
+    max-width: 38rem;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .hero-portfolio {
+    min-height: 0;
+    padding-top: 7rem;
+    padding-bottom: 3rem;
+  }
+
+  .portfolio-hero-copy {
+    padding: 1.5rem;
+  }
+
+  .hero-title {
+    max-width: 11ch;
+  }
+
+  .home-project-panel {
+    padding: 1rem;
+  }
+
+  .home-featured-project {
+    min-height: 250px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-featured-project,
+  .home-personal-project {
+    transition: none;
   }
 }

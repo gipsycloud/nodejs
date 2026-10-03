@@ -7,19 +7,19 @@
         <span class="hamburger-inner"></span>
       </span>
     </button>
-    <ul class="nav">
+    <ul class="nav show" aria-label="Main navigation">
       <li class="item">
-        <a class="<%= isActiveRoute('/', currentRoute) %>" href="/">Home</a>
+        <a class="link <%= isActiveRoute('/', currentRoute) %>" href="/">Home</a>
       </li>
-      <!-- <li class="item">
-        <a class="<%#= isActiveRoute('/portfolio', currentRoute) %>" href="/portfolio">Portfolio</a>
-      </li> -->
-      <!-- <li class="item">
-        <a class="<%#= isActiveRoute('/about', currentRoute) %>" href="/about">About</a>
-      </li> -->
-      <!-- <li class="item">
-        <a class="<%#= isActiveRoute('/contact', currentRoute) %>" href="/contact">Portfolio</a>
-      </li> -->
+      <li class="item">
+        <a class="link" href="/#portfolio">Portfolio</a>
+      </li>
+      <li class="item">
+        <a class="link" href="/#service">Services</a>
+      </li>
+      <li class="item">
+        <a class="link" href="/#contact">Contact</a>
+      </li>
     </ul>
   </div>
 </nav><!-- End of Page Navbar -->

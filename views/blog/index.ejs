@@ -1,20 +1,21 @@
 <section class="section hero-portfolio background_image" id="about">
-  <div class="overlay"></div>
+  <!-- <div class="overlay"></div> -->
   <div class="container zindex">
     <div class="portfolio-hero">
       <div class="portfolio-hero-copy">
-        <p class="section-subtitle hero-kicker">Developer Portfolio</p>
-        <h2 class="hero-title">Hi, I am IEB_BOY</h2>
+        <p class="section-subtitle hero-kicker"><span class="hero-kicker-dot"></span> Developer Portfolio</p>
+        <h2 class="hero-title">I design <span>useful</span> digital experiences.</h2>
         <p class="hero-description">
-          I build practical web experiences with a focus on clean UI, solid backend logic, and a fast learning
-          mindset.
-          This space highlights the work, tools, and habits that shape how I solve problems.
+          I am Aung Thi Win, a full-stack developer focused on creating clean interfaces, solid backend logic, and
+          product experiences that feel natural for real users.
         </p>
         <div class="hero-actions">
           <a href="/download" class="btn btn-outline-primary btn-rounded">Download CV</a>
           <a href="#contact" class="btn btn-primary btn-rounded">Contact Me</a>
         </div>
         <div class="hero-tags" aria-label="Core strengths">
+          <span>Ruby on Rails</span>
+          <span>PostgreSQL</span>
           <span>Node.js</span>
           <span>Express</span>
           <span>EJS</span>
@@ -84,51 +85,7 @@
   </div>
 </section>
 
-<section class="section section-emphasis" id="portfolio">
-  <div class="container">
-    <div class="section-heading text-center">
-      <p class="section-subtitle">Selected Work</p>
-      <h6 class="section-title mb-6">Portfolio Highlights</h6>
-    </div>
-    <div class="row portfolio-feature-grid">
-      <div class="col-md-4">
-        <a href="#" class="portfolio-card">
-          <img src="/img/folio-1.jpg" class="portfolio-card-img" alt="Portfolio project preview 1">
-          <span class="portfolio-card-overlay">
-            <span class="portfolio-card-caption">
-              <h4>Project Showcase</h4>
-              <p class="font-weight-normal">Case study layout</p>
-            </span>
-          </span>
-        </a>
-      </div>
-      <div class="col-md-4">
-        <a href="#" class="portfolio-card">
-          <img src="/img/folio-2.jpg" class="portfolio-card-img" alt="Portfolio project preview 2">
-          <span class="portfolio-card-overlay">
-            <span class="portfolio-card-caption">
-              <h4>Web Application</h4>
-              <p class="font-weight-normal">Feature-driven build</p>
-            </span>
-          </span>
-        </a>
-      </div>
-      <div class="col-md-4">
-        <a href="#" class="portfolio-card">
-          <img src="/img/folio-3.jpg" class="portfolio-card-img" alt="Portfolio project preview 3">
-          <span class="portfolio-card-overlay">
-            <span class="portfolio-card-caption">
-              <h4>UI Refresh</h4>
-              <p class="font-weight-normal">Original visual design</p>
-            </span>
-          </span>
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="github">
+<section class="section section-emphasis" id="github">
   <div class="container">
     <div class="section-heading text-center">
       <p class="section-subtitle">Proof of Work</p>
@@ -170,6 +127,89 @@
         </div>
       </div>
     <% } %>
+  </div>
+</section>
+
+<section id="portfolio">
+  <div class="container">
+    <div class="section-heading text-center">
+      <p class="section-subtitle">Selected Work</p>
+      <h6 class="section-title mb-6">Portfolio Highlights</h6>
+    </div>
+
+    <div class="portfolio-hero">
+      <div class="portfolio-hero-copy">
+        <p class="section-subtitle hero-kicker"><span class="hero-kicker-dot"></span> Feature focus</p>
+        <h2 class="hero-title">Projects built with <span>clarity</span> and momentum.</h2>
+        <p class="hero-description">
+          I enjoy turning ideas into product experiences that are simple to use, easy to maintain, and shaped around
+          user needs rather than just visual trends.
+        </p>
+        <div class="hero-actions">
+          <a href="/download" class="btn btn-outline-primary btn-rounded">Download CV</a>
+          <a href="#contact" class="btn btn-primary btn-rounded">Let's Talk</a>
+        </div>
+      </div>
+
+      <aside class="home-project-panel" aria-label="Featured projects">
+        <div class="home-panel-heading">
+          <span>Recent wins</span>
+          <span class="home-panel-count">01 — 02</span>
+        </div>
+        <a class="home-featured-project" href="https://hostelmate.asia" target="_blank" rel="noopener noreferrer">
+          <span class="home-project-label">Company project</span>
+          <span class="home-project-mark" aria-hidden="true">H</span>
+          <span class="home-project-name">HostelMate</span>
+          <span class="home-project-description">A streamlined platform for finding rooms that match lifestyle and budget.</span>
+          <span class="home-project-link">Explore HostelMate <span aria-hidden="true">&nearr;</span></span>
+        </a>
+        <a class="home-personal-project" href="https://iebboy.website" target="_blank" rel="noopener noreferrer">
+          <span class="home-personal-mark" aria-hidden="true">i</span>
+          <span>
+            <span class="home-project-label">Hobby project</span>
+            <strong>IEBBOY</strong>
+            <span class="home-personal-description">A personal brand and portfolio experience.</span>
+          </span>
+          <span class="home-personal-arrow" aria-hidden="true">&nearr;</span>
+        </a>
+      </aside>
+    </div>
+
+    <div class="row portfolio-feature-grid mt-5">
+      <div class="col-md-4">
+        <a href="https://hostelmate.asia" class="portfolio-card" target="_blank" rel="noopener noreferrer">
+          <img src="/img/folio-1.jpg" class="portfolio-card-img" alt="HostelMate project preview">
+          <span class="portfolio-card-overlay">
+            <span class="portfolio-card-caption">
+              <h4>HostelMate</h4>
+              <p class="font-weight-normal">Property discovery and booking UX</p>
+            </span>
+          </span>
+        </a>
+      </div>
+      <div class="col-md-4">
+        <a href="https://iebboy.website" class="portfolio-card" target="_blank" rel="noopener noreferrer">
+          <img src="/img/folio-2.jpg" class="portfolio-card-img" alt="IEBBOY website preview">
+          <span class="portfolio-card-overlay">
+            <span class="portfolio-card-caption">
+              <h4>IEBBOY</h4>
+              <p class="font-weight-normal">Brand site and digital presence</p>
+            </span>
+          </span>
+        </a>
+      </div>
+      <div class="col-md-4">
+        <a href="/shortener" class="portfolio-card">
+          <img src="/img/folio-3.jpg" class="portfolio-card-img" alt="URL shortening project preview">
+          <span class="portfolio-card-overlay">
+            <span class="portfolio-card-caption">
+              <h4>URL Shortener</h4>
+              <p class="font-weight-normal">Fast, practical utility workflow</p>
+            </span>
+          </span>
+        </a>
+      </div>
+    </div>
   </div>
 </section>
 

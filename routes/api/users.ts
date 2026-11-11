@@ -1,7 +1,7 @@
-const express = require('express');
+import express = require('express');
 const router = express.Router();
 const uuid = require('uuid');
-let users = require('../../Users');
+import users = require('../../Users');
 
 router.get('/', (req, res) => {
   console.log(req.query);
@@ -34,9 +34,8 @@ router.post('/', (req, res) => {
 
 // update user
 router.put('/:id', (req, res) => {
-  const found = users.some(user => user.id === parseInt(req.params.id));
-  if (found) {
-    const user = users.find(user => user.id === parseInt(req.params.id));
+  const user = users.find(user => user.id === parseInt(req.params.id));
+  if (user) {
     user.name = req.body.name ? req.body.name : user.name;
     user.email = req.body.email ? req.body.email : user.email;
     res.json({ msg: 'User updated', users });
@@ -49,7 +48,8 @@ router.put('/:id', (req, res) => {
 router.delete('/:id', (req, res) => {
   const found = users.some(user => user.id === parseInt(req.params.id));
   if (found) {
-    users = users.filter(user => user.id !== parseInt(req.params.id));
+    const remainingUsers = users.filter(user => user.id !== parseInt(req.params.id));
+    users.splice(0, users.length, ...remainingUsers);
     res.json({ msg: 'User deleted', users });
   } else {
     res.sendStatus(400);

@@ -1,4 +1,4 @@
-const express = require('express');
+import express = require('express');
 const router = express.Router();
 const Post = require('../models/Post');
 const User = require('../models/User');
@@ -7,9 +7,16 @@ const jwt = require('jsonwebtoken');
 
 const adminLayout = './layouts/blog/admin';
 const jwtSecret = process.env.JWT_SECRET;
+if (!jwtSecret) {
+  throw new Error('JWT_SECRET is required');
+}
 
 // middleware to check if user is logged in
-const authMiddleware = (req, res, next) => {
+const authMiddleware = (
+  req: express.Request & { cookies: Record<string, string>; user?: unknown },
+  res: express.Response,
+  next: express.NextFunction
+) => {
   const token = req.cookies.token; // get the token from the brower cookies
   // console.log(req.cookies.token);
   if (!token) {
@@ -165,8 +172,9 @@ router.post('/register', async (req, res) => {
       await user.save();
       res.status(201).json({ message: 'User created', user });
     } catch (err) {
-      if (err.code === 11000) {
+      if (typeof err === 'object' && err !== null && 'code' in err && err.code === 11000) {
         res.send('User already exists');
+        return;
       }
       res.status(500).send('Server error');
     }

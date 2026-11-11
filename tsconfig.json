@@ -1,0 +1,25 @@
+{
+  // Visit https://aka.ms/tsconfig to read more about this file
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "rootDir": ".",
+    "outDir": "dist",
+    "strict": true,
+    "types": ["node"],
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": [
+    "app.ts",
+    "Users.ts",
+    "progressbar.ts",
+    "controllers/**/*.ts",
+    "helper/**/*.ts",
+    "models/**/*.ts",
+    "routes/**/*.ts",
+    "server/**/*.ts"
+  ]
+}

@@ -1,4 +1,4 @@
-function isActiveRoute(route, currentRoute) {  // need two parameters for this helper function
+function isActiveRoute(route: string, currentRoute: string) {  // need two parameters for this helper function
   return route === currentRoute ? 'active' : '';
 }
 

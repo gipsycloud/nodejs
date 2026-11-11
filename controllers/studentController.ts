@@ -1,4 +1,4 @@
-const express = require('express');
+import express = require('express');
 var router = express.Router();
 const mongoose = require('mongoose');
 const Student = mongoose.model('Student');
@@ -17,7 +17,7 @@ router.post('/', function (req, res) {
   }
 });
 
-async function insertRecord(req, res) {
+async function insertRecord(req: express.Request, res: express.Response) {
   try {
     const student = new Student({
       name: req.body.name,
@@ -29,11 +29,11 @@ async function insertRecord(req, res) {
     res.redirect('student/list');
   } catch (err) {
     console.log('Error during record insertion: ', err);
-    res.send('Error during record insertion: ', err);
+    res.send(`Error during record insertion: ${String(err)}`);
   }
 }
 
-async function updateRecord(req, res) {
+async function updateRecord(req: express.Request, res: express.Response) {
   try {
     const doc = await Student.findOneAndUpdate(
       { _id: req.body._id },
@@ -43,7 +43,7 @@ async function updateRecord(req, res) {
     res.redirect('student/list');
   } catch (err) {
     console.log('Error during record update: ', err);
-    res.send('Error during record update: ', err);
+    res.send(`Error during record update: ${String(err)}`);
   }
 };
 
@@ -82,4 +82,3 @@ router.get('/delete/:id', async (req, res) => {
 })
 
 module.exports = router;
-

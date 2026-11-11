@@ -1,6 +1,6 @@
 // import fetch from 'node-fetch';
 // const fetch = require('node-fetch');
-const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
+const fetch = globalThis.fetch;
 
 const query = `
   query($userName: String!) {
@@ -28,7 +28,28 @@ const query = `
   }
 `;
 
-async function fetchContributions(username, token) {
+interface ContributionDay {
+  date: string;
+  contributionCount: number;
+}
+
+interface RepositoryContribution {
+  repository: { nameWithOwner: string };
+  contributions: { totalCount: number };
+}
+
+interface Contributions {
+  contributionCalendar: {
+    totalContributions: number;
+    weeks: Array<{ contributionDays: ContributionDay[] }>;
+  };
+  commitContributionsByRepository: RepositoryContribution[];
+}
+
+async function fetchContributions(
+  username: string | undefined,
+  token?: string
+): Promise<{ contributions: Contributions; commitContributions: RepositoryContribution[] } | null> {
   try {
     const response = await fetch('https://api.github.com/graphql', {
       method: 'POST',
@@ -41,7 +62,10 @@ async function fetchContributions(username, token) {
         variables: { userName: username },
       }),
     });
-    const data = await response.json();
+    const data = await response.json() as {
+      errors?: Array<{ message: string }>;
+      data: { user: { contributionsCollection: Contributions } };
+    };
     if (data.errors) {
       throw new Error(data.errors.map(e => e.message).join(', '));
     }
@@ -55,4 +79,4 @@ async function fetchContributions(username, token) {
   }
 }
 
-module.exports = { fetchContributions }; // export the fetchContributions function
+export { fetchContributions };

@@ -1,5 +1,5 @@
+import express = require('express');
 require('dotenv').config();
-const express = require('express');
 const expressLayout = require('express-ejs-layouts');
 const methodOverride = require('method-override');
 const cookieParser = require('cookie-parser'); // save session for username and password when we login with session
@@ -33,8 +33,8 @@ app.use(express.static('public'));  // serve static files
 app.use(expressLayout);
 app.set('layout', './layouts/blog/main');
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
-app.use(express.static(path.join(__dirname, 'public')));
+app.set('views', path.join(process.cwd(), 'views'));
+app.use(express.static(path.join(process.cwd(), 'public')));
 
 
 const mongoUrl = process.env.MONGODB_URI;
@@ -60,7 +60,7 @@ app.locals.isActiveRoute = isActiveRoute;
 app.use('/', require('./routes/main'));
 app.use('/', require('./routes/admin'));
 
-var ProgressBar = require('./progressbar.js');
+var ProgressBar = require('./progressbar');
 
 // mongodb+srv://lesson:lesson123@lesson.mudrs.mongodb.net/?retryWrites=true&w=majority&appName=lesson
 // app.use(express.json());

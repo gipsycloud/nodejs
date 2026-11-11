@@ -1,4 +1,4 @@
-const express = require('express');
+import express = require('express');
 const router = express.Router();
 const Todo = require('../models/Todo');
 
@@ -16,7 +16,7 @@ router.post('/', async (req, res) => {
     await todo.save();
     res.status(201).json(todo);
   } catch (err) {
-    res.status(200).json({ message: err.message });
+    res.status(200).json({ message: err instanceof Error ? err.message : String(err) });
   }
 })
 
@@ -26,14 +26,14 @@ router.get('/', async (req, res) => {
     const todos = await Todo.find();
     res.json(todos);
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    res.status(500).json({ message: err instanceof Error ? err.message : String(err) });
   }
 });
 
 // update todo
 router.patch('/:id', async (req, res) => {
   try {
-    const todo = await Todo.findById(res.params.id);
+    const todo = await Todo.findById(req.params.id);
     if (!todo) return res.status(404).json({ message: 'Todo not found' });
 
     todo.completed = req.body.completed
@@ -44,7 +44,7 @@ router.patch('/:id', async (req, res) => {
     todo.priority = req.body.priority
     await todo.save();
   } catch (err) {
-    res.status(400).json({ message: err.message });
+    res.status(400).json({ message: err instanceof Error ? err.message : String(err) });
   }
 });
 
@@ -56,7 +56,7 @@ router.delete('/:id', async (req, res) => {
     await todo.remove();
     res.json({ message: 'Todo deleted' });
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    res.status(500).json({ message: err instanceof Error ? err.message : String(err) });
   }
 });
 // define routes here

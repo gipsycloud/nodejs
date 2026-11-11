@@ -1,9 +1,9 @@
-const express = require('express');
+import express = require('express');
 const router = express.Router();
 const fs = require('fs');
 // const { shortenerController } = require('../controllers/shortenerController');
 const Post = require('../models/Post');
-const { fetchContributions } = require('../helper/github');
+import { fetchContributions } from '../helper/github';
 const { speedInsights } = require('@vercel/speed-insights');
 
 // import { SpeedInsights } from "@vercel/speed-insights/next"
@@ -30,13 +30,13 @@ router.get('/download', (req, res) => {
 router.get('/portfolio', async (req, res) => {
   try {
     let perPage = 5;
-    let page = req.query.page || 1;
+    const page = typeof req.query.page === 'string' ? Number.parseInt(req.query.page, 10) : 1;
     const data = await Post.aggregate([{ $sort: { createdAt: -1 } }, { $skip: (perPage * page) - perPage }, { $limit: perPage }]).exec();
 
     const count = await Post.countDocuments();
     console.log(count);
-    const nextPage = parseInt(page) + 1;
-    const prevPage = parseInt(page) - 1;
+    const nextPage = page + 1;
+    const prevPage = page - 1;
     const hasNextPage = nextPage <= Math.ceil(count / perPage);
 
     res.render('blog/portfolio', {
@@ -145,13 +145,11 @@ router.get('/', async (req, res) => {
       process.env.GITHUB_TOKEN
     );
 
-    // Safely destructure, providing a fallback empty object if githubData is null/undefined
-    const { contributions, commitContributions } = githubData || {};
-
-    if (!contributions) {
+    if (!githubData?.contributions) {
       // This will be caught by the catch block below
       throw new Error('Failed to fetch contributions or data is not in the expected format.');
     }
+    const { contributions, commitContributions } = githubData;
     const contributionDays = contributions.contributionCalendar.weeks.flatMap(week =>
       week.contributionDays.map(day => ({
         date: day.date,
@@ -174,9 +172,9 @@ router.get('/', async (req, res) => {
     }
 
     // Calculate total contributions
-    const monthLabels = []
+    const monthLabels: Array<{ month: string; weekIndex: number }> = [];
     const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-    let currentMonth = null;
+    let currentMonth: number | null = null;
     contributions.contributionCalendar.weeks.forEach((week, weekIndex) => {
       const firstDay = week.contributionDays[0].date;
       if (firstDay) {

@@ -1,4 +1,4 @@
-const express = require('express');
+import express = require('express');
 const Corona = require('../models/Corona');
 const router = express.Router();
 
@@ -11,7 +11,7 @@ router.post('/', async (req, res) => {
     const newCorona = await corona.save();
     res.status(201).json(newCorona);
   } catch (err) {
-    res.status(400).json({ message: err.message });
+    res.status(400).json({ message: err instanceof Error ? err.message : String(err) });
   }
 });
 
@@ -20,7 +20,7 @@ router.get('/', async (req, res) => {
     const coronas = await Corona.find();
     res.status(200).json(coronas);
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    res.status(500).json({ message: err instanceof Error ? err.message : String(err) });
   }
 });
 

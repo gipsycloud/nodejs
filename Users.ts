@@ -1,4 +1,10 @@
-const users = [
+interface ApiUser {
+  id: number | string;
+  name: string;
+  email: string;
+}
+
+const users: ApiUser[] = [
   {
     id: 1,
     name: "john",
@@ -11,4 +17,4 @@ const users = [
   }
 ];
 
-module.exports = users;
+export = users;

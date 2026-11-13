@@ -34,8 +34,30 @@
 // });
 
 // // navbar toggle
-$('#nav-toggle').click(function () {
-    $(this).toggleClass('is-active')
-    $('ul.nav').toggleClass('show');
-    $(this).attr('aria-expanded', $(this).hasClass('is-active') ? 'true' : 'false');
+const navToggle = $('#nav-toggle');
+const mainNavigation = $('#main-navigation');
+
+function closeNavigation() {
+    navToggle.removeClass('is-active').attr('aria-expanded', 'false');
+    mainNavigation.removeClass('show');
+}
+
+navToggle.on('click', function () {
+    const isExpanded = $(this).attr('aria-expanded') === 'true';
+    $(this).toggleClass('is-active', !isExpanded).attr('aria-expanded', String(!isExpanded));
+    mainNavigation.toggleClass('show', !isExpanded);
+});
+
+mainNavigation.find('a').on('click', closeNavigation);
+
+$(document).on('keydown', function (event) {
+    if (event.key === 'Escape') {
+        closeNavigation();
+    }
+});
+
+$(window).on('resize', function () {
+    if (window.matchMedia('(min-width: 992px)').matches) {
+        closeNavigation();
+    }
 });

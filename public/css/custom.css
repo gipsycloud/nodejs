@@ -13125,6 +13125,14 @@ pre .code {
   margin-top: 5px;
 }
 
+@media (min-width: 992px) {
+  .custom-navbar .nav .item {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+}
+
 .pagination.pagination-sm .page-item:first-child a,
 .pagination.pagination-sm .page-item:last-child a {
   font-size: 9px;

@@ -1,3 +1,4 @@
 {
-  "gitlens.statusBar.enabled": false
+  "gitlens.statusBar.enabled": false,
+  "js/ts.tsdk.path": "node_modules/typescript"
 }

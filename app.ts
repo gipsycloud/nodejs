@@ -7,6 +7,7 @@ import express, {
   type NextFunction,
 } from "express";
 import { randomUUID } from "node:crypto";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 require('dotenv').config();
 const expressLayout = require('express-ejs-layouts');
